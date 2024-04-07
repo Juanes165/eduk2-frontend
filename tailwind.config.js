@@ -12,7 +12,24 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      backgroundSize: {
+        'size-200': '200% 200%',
+      },
+      backgroundPosition: {
+        'pos-0': '0% 0%',
+        'pos-100': '100% 100%',
+      },
     },
+    colors: {
+      'main': {
+        light: '#F9F8FD',
+        dark: '#070D1F',
+      },
+      'wisteria': '#CB98ED',
+      'amethyst': '#8B63DA',
+      'grape': '#591DA9',
+      'violet-dark': '#250C46',
+    }
   },
   plugins: [],
 };
