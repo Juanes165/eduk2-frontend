@@ -11,17 +11,17 @@ export default function AccessPage() {
     return (
         <main className="flex flex-col h-screen overflow-hidden">
             <div className="relative flex">
-                <div className={`absolute top-0 left-0 w-full transition-all duration-500 ${isSignIn ? 'translate-x-0':'-translate-x-full'}`}>
+                <div className={`absolute top-0 left-0 w-full transition-all duration-500 ${isSignIn ? 'translate-x-0':'-translate-x-full lg:translate-x-0'}`}>
                     <div className="flex gap-4 m-5">
                         <h1 className="text-5xl text-center font-bold">EDUK2</h1>
                         <h2 className="text-3xl">LOGO</h2>
                     </div>
-                    <div className="mx-12 my-44">
+                    <div className={`mx-12 my-[20vh] transition-all duration-500 ${isSignIn ? 'opacity-100 lg:w-1/2' : 'opacity-0 lg:w-1/2'}`}>
                         <SignInForm handleToggle={handleToggle}/>
                     </div>
                 </div>
-                <div className={`bg-gradient-to-br from-grape to-amethyst absolute top-0 left-0 w-full h-screen transition-all duration-500 ${isSignIn ? 'translate-x-full' : 'translate-x-0'}`}>
-                    <div className="mx-12 my-44">
+                <div className={`bg-gradient-to-br from-grape to-amethyst absolute dark:from-violet-dark dark:to-grape top-0 left-0 w-full h-screen transition-all duration-500 lg:inset-0 lg:transform lg:skew-x-12 ${isSignIn ? 'translate-x-full lg:translate-x-[60%]' : 'translate-x-0 lg:translate-x-[30%]'}`}>
+                    <div className={`mx-12 my-[15vh] lg:mx-20 xl:mx-40 transition-all duration-500 lg:translate-x-[20%] lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center lg:z-10 lg:-skew-x-12 ${isSignIn ? 'lg:opacity-0 lg:w-1/2' : 'opacity-100 lg:w-1/2'}`}>
                         <SignUpForm handleToggle={handleToggle}/>
                     </div>
                 </div>
