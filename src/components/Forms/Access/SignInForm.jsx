@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { fetchLogin } from '@/utils/services/data';   
+import { linkGoogle } from '@/utils/services/firebase';
 
 export default function SignInForm({ handleToggle }) {
     const [email, setEmail] = useState("")
@@ -51,6 +52,7 @@ export default function SignInForm({ handleToggle }) {
                 </button>
                 <button 
                     type="button"
+                    onClick={linkGoogle}
                     className="text-base sm:text-xl border-2 dark:text-white border-amethyst w-full p-2 rounded-md transition-all duration-400 hover:border-grape hover:bg-grape hover:text-white dark:border-grape"
                 >
                     <div className="flex gap-3 justify-center">
