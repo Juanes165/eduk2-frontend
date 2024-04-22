@@ -19,17 +19,17 @@ module.exports = {
         'pos-0': '0% 0%',
         'pos-100': '100% 100%',
       },
+      colors: {
+        'main': {
+          light: '#F9F8FD',
+          dark: '#070D1F',
+        },
+        'wisteria': '#CB98ED',
+        'amethyst': '#8B63DA',
+        'grape': '#591DA9',
+        'violet-dark': '#250C46',
+      }
     },
-    colors: {
-      'main': {
-        light: '#F9F8FD',
-        dark: '#070D1F',
-      },
-      'wisteria': '#CB98ED',
-      'amethyst': '#8B63DA',
-      'grape': '#591DA9',
-      'violet-dark': '#250C46',
-    }
   },
   plugins: [],
 };
