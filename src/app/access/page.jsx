@@ -12,9 +12,9 @@ export default function AccessPage() {
         <main className="flex flex-col h-screen overflow-hidden">
             <div className="relative flex">
                 <div className={`absolute top-0 left-0 w-full transition-all duration-500 ${isSignIn ? 'translate-x-0':'-translate-x-full lg:translate-x-0'}`}>
-                    <div className="flex gap-4 m-5">
+                    <div className="flex gap-4 m-5 items-center">
                         <h1 className="text-5xl text-center font-bold">EDUK2</h1>
-                        <h2 className="text-3xl">LOGO</h2>
+                        <img src="https://via.placeholder.com/100" className="h-14 w-14 rounded-full"></img>
                     </div>
                     <div className={`mx-12 my-[20vh] transition-all duration-500 ${isSignIn ? 'opacity-100 lg:w-1/2' : 'opacity-0 lg:w-1/2'}`}>
                         <SignInForm handleToggle={handleToggle}/>
