@@ -17,10 +17,10 @@ export default function Home() {
       </header>
       <main className="flex flex-col gap-4 min-h-screen w-full items-center my-2 lg:p-14 xl:p-24 2xl:px-20">
         <section className="flex flex-col top-0 mb-10 lg:flex-row 2xl:mx-60">
-          <img src="https://via.placeholder.com/400" className=" mx-5 2xl:h-[550px] 2xl:w-[550px]"/>
+          <img src="https://via.placeholder.com/400" className=" mx-5 my-8 2xl:h-[550px] 2xl:w-[550px]"/>
           <div className="w-full flex justify-center flex-col 2xl:mx-32">
-            <h2 className="text-4xl text-center font-bold p-4 lg:text-5xl">¿QUÉ ES EDUK2?</h2>
-            <p className="text-xl p-5 text-center lg:text-2xl">
+            <h2 className="text-4xl text-center font-bold px-4 pt-4 pb-0 lg:text-5xl">¿QUÉ ES EDUK2?</h2>
+            <p className="text-xl px-5 py-2 text-center lg:text-2xl">
               Eduk2 es una plataforma de educación en línea que provee un entorno donde profundizar tus conocimientos y que te premia por estudiar.
             </p>
             <Link href="#" className="border-2 border-amethyst dark:border-grape text-xl lg:text-2xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white text-center mx-16 my-6 py-1" >
