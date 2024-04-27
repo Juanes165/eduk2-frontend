@@ -7,6 +7,77 @@ module.exports = {
   ],
   theme: {
     extend: {
+      'animation': {
+        'gradient-x':'gradient-x 10s ease infinite',
+        'gradient-y':'gradient-y 10s ease infinite',
+        'gradient-xy':'gradient-xy 10s ease infinite',
+        'spin-slow': 'spin-slow 15s linear infinite',
+        'reverse-spin-slow': 'reverse-spin-slow 15s linear infinite',
+        'bg-bottom-top': 'bg-bottom-top 40s linear infinite',
+      },
+      'keyframes': {
+        'gradient-y': {
+            '0%, 100%': {
+              'background-size':'400% 400%',
+              'background-position': 'center top'
+            },
+            '50%': {
+              'background-size':'200% 200%',
+              'background-position': 'center center'
+            }
+        },
+        'gradient-x': {
+            '0%, 100%': {
+                'background-size':'200% 200%',
+                'background-position': 'left center'
+            },
+            '50%': {
+                'background-size':'200% 200%',
+                'background-position': 'right center'
+            }
+        },
+        'gradient-xy': {
+          '0%, 100%': {
+              'background-size':'400% 400%',
+              'background-position': 'left center'
+          },
+          '50%': {
+              'background-size':'200% 200%',
+              'background-position': 'right center'
+          }
+        },
+        'spin-slow': {
+          '0%': {
+            'transform': 'rotate(0deg)',
+          },
+          '100%': {
+            'transform': 'rotate(360deg)',
+          },
+        },
+        'reverse-spin-slow': {
+          '0%': {
+            'transform': 'rotate(360deg)',
+          },
+          '100%': {
+            'transform': 'rotate(0deg)',
+          },
+        },
+        'bg-bottom-top': {
+          '0%': {
+            'transform': 'translateY(100%)'
+          },
+          '100%': {
+            'transform': 'translateY(-55%)'
+          },
+        },
+      },
+      animationDelay: {
+        11000: '11000ms',
+        15000: '15000ms',
+        32000: '32000ms',
+        37000: '37000ms',
+        40000: '40000ms',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -31,5 +102,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animation-delay"),
+  ],
 };
