@@ -24,6 +24,7 @@ module.exports = {
           light: '#F9F8FD',
           dark: '#070D1F',
         },
+        'platinum': '#E3E5E9',
         'wisteria': '#CB98ED',
         'amethyst': '#8B63DA',
         'grape': '#591DA9',
