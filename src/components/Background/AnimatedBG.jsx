@@ -1,4 +1,4 @@
-export const AnimatedBG = () => {
+export default function AnimatedBG() {
     return(
         <div className="z-10 flex h-full w-full justify-center relative">
             <div className="animate-bg-bottom-top">

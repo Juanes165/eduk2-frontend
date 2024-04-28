@@ -99,7 +99,7 @@ module.exports = {
         'amethyst': '#8B63DA',
         'grape': '#591DA9',
         'violet-dark': '#250C46',
-      }
+      },
     },
   },
   plugins: [
