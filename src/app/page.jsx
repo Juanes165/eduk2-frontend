@@ -11,7 +11,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold lg:text-6xl xl:text-5xl">EDUK2</h1>
           <img src="https://via.placeholder.com/40" className="rounded-full lg:w-16 xl:w-12" />
         </div>
-        <Link href="#" className="bg-transparent border-amethyst dark:border-grape border-2 text-xl lg:text-3xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white px-4 lg:px-8 lg:py-1 xl:text-2xl xl:px-10" >
+        <Link href="/access" className="bg-transparent border-amethyst dark:border-grape border-2 text-xl lg:text-3xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white px-4 lg:px-8 lg:py-1 xl:text-2xl xl:px-10" >
           Ingresar
         </Link>
       </header>
@@ -23,7 +23,7 @@ export default function Home() {
             <p className="text-xl px-5 py-2 text-center lg:text-2xl">
               Eduk2 es una plataforma de educación en línea que provee un entorno donde profundizar tus conocimientos y que te premia por estudiar.
             </p>
-            <Link href="#" className="border-2 border-amethyst dark:border-grape text-xl lg:text-2xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white text-center mx-16 my-6 py-1" >
+            <Link href="/access" className="border-2 border-amethyst dark:border-grape text-xl lg:text-2xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white text-center mx-16 my-6 py-1" >
               Ingresar
             </Link>
           </div>
