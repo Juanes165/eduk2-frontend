@@ -1,4 +1,3 @@
-import React from 'react';
 import InfoCourseCard from "@/components/Cards/InfoCourseCard";
 
 let courses = [
@@ -24,16 +23,17 @@ let courses = [
     },
 ]
 
-function Page() {
+export default function Page() {
     return (
-        <div className='h-screen overflow-y-scroll md:max-w-[calc(100%-250px)] p-6'>
-            <div className="flex flex-col gap-5 md:flex-row justify-center items-center">
-                {courses.map((course) => (
-                    <InfoCourseCard course={course} key={course.id} />
-                ))}
+        <div className="w-screen h-full p-5 gap-5 md:px-40 items-center justify-center flex flex-col">
+            <h1 className="text-5xl font-bold">Test Page</h1>
+            <div>
+                <div className="w-full flex flex-col gap-5">
+                    {courses.map((course) => (
+                        <InfoCourseCard course={course} key={course.id} />
+                    ))}
+                </div>
             </div>
         </div>
     );
 }
-
-export default Page;

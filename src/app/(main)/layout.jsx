@@ -23,7 +23,7 @@ export default function HomeLayout({ children }) {
   }
 
   return (
-    <section>
+    <section className='max-h-screen overflow-hidden'>
       {/* Include shared UI here e.g. a header or sidebar */}
       <Header toggleSidebar={toggleSidebar} />
       <div className='flex flex-row'>

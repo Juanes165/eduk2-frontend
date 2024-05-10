@@ -1,6 +1,6 @@
 export default function Header({ toggleSidebar }) {
     return (
-        <header className="border-b-[1px] border-main-dark/25 dark:border-main-light/25 h-16 py-2 px-4 flex flex-row">
+        <header className="border-b-[1px] lg:sticky lg:top-0 border-main-dark/25 dark:border-main-light/25 h-16 py-2 px-4 flex flex-row bg-main-light dark:bg-main-dark">
             {/* deploy sidebar button */}
             <button type="button" className="h-12 w-12 rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-violet-dark" onClick={toggleSidebar}>
                 {/* 3 bar icon */}
