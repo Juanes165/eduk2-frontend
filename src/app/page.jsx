@@ -2,14 +2,15 @@
 
 import LandingInfoCard from "@/components/Cards/LandingInfoCard";
 import Link from "next/link";
+import { pressStart2P } from "@/utils/fonts/fonts";
 
 export default function Home() {
   return (
     <>
       <header className="flex items-center sticky top-0 justify-between bg-white dark:bg-main-dark pt-4 pb-2 border-b-2 mx-4 border-amethyst dark:border-grape lg:border-b-4 xl:p-5 xl:mx-8">
-        <div className="flex gap-2">
-          <h1 className="text-4xl font-bold lg:text-6xl xl:text-5xl">EDUK2</h1>
-          <img src="https://via.placeholder.com/40" className="rounded-full lg:w-16 xl:w-12" />
+        <div className="flex gap-3 items-center">
+          <img src="https://via.placeholder.com/40" className="rounded-full mb-1 lg:w-16 xl:w-12" />
+          <h1 className={`${pressStart2P.className} text-3xl md:text-4xl font-bold lg:text-6xl xl:text-4xl`}>EDUK2</h1>
         </div>
         <Link href="/access" className="bg-transparent border-amethyst dark:border-grape border-2 text-xl lg:text-3xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white px-4 lg:px-8 lg:py-1 xl:text-2xl xl:px-10" >
           Ingresar

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { fetchSignUp } from "@/utils/services/data"
 import { validateEmail, validateName, validatePassword, validatePasswordMatch } from "@/utils/validateFields"
 import { ShowPassword } from "@/components/Buttons/ShowPassword"
+import { pressStart2P } from "@/utils/fonts/fonts"
 
 export default function SignUpForm ({ handleToggle }) {
     const [data, formatData] = useState({ "name": "", "lastname": "", "email": "", "confirmPassword":"", "password": "", "grade": "", "photoUrl": "https://i.stack.imgur.com/l60Hf.png" })
@@ -82,8 +83,8 @@ export default function SignUpForm ({ handleToggle }) {
 
     return (
         <div className="h-full w-full items-center lg:px-12 xl:px-40 2xl:py-24">
-            <h1 className="text-center text-5xl mb-10 font-bold text-white">
-                Registrarse
+            <h1 className={`${pressStart2P.className} text-center text-4xl mb-10 font-bold text-white`}>
+                Registro
             </h1>
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2 text-black">
                 <input 

@@ -1,3 +1,6 @@
+import { pressStart2P } from "@/utils/fonts/fonts"
+import Link from "next/link"
+
 export default function Header({ toggleSidebar }) {
     return (
         <header className="border-b-[1px] lg:sticky lg:top-0 border-main-dark/25 dark:border-main-light/25 h-16 py-2 px-4 flex flex-row bg-main-light dark:bg-main-dark">
@@ -9,9 +12,11 @@ export default function Header({ toggleSidebar }) {
                 </svg>
             </button>
             {/* logo */}
-            <div className="flex flex-row items-center">
-                <img src="https://via.placeholder.com/200" alt="Logo" className="mx-4 w-12 h-12 rounded-full" />
-                <h1 className="text-3xl font-bold italic">EduK2</h1>
+            <div className="flex">
+                <Link href={'/home'} className="flex flex-row items-center">
+                    <img src="https://via.placeholder.com/200" alt="Logo" className="mx-4 w-12 h-12 rounded-full" />
+                    <h1 className={`text-3xl ${pressStart2P.className}`}>EDUK2</h1>
+                </Link>
             </div>
         </header>
     )

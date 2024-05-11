@@ -28,7 +28,9 @@ export default function HomeLayout({ children }) {
       <Header toggleSidebar={toggleSidebar} />
       <div className='flex flex-row'>
         <Sidebar openedSidebar={openedSidebar} sidebarRef={sidebarRef} />
-        {children}
+        <div className='grow overflow-y-scroll w-full overflow-x-hidden h-[calc(100vh-4rem)]'>
+          {children}  
+        </div>
       </div>
     </section>
   )
