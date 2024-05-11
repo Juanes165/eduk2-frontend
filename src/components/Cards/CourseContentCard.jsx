@@ -16,7 +16,7 @@ export default function CourseContentCard({ content }) {
             <section className="flex flex-col gap-2">
                 {files.map((file, index) => {
                     return (
-                        <div className="flex bg-amethyst dark:bg-grape rounded-md text-white p-2 gap-3">
+                        <div key={index} className="flex bg-amethyst dark:bg-grape rounded-md text-white p-2 gap-3">
                             <div className="rounded-md hover:bg-amethyst">
                                 <a href={file} target="_blank">
                                     <VideoIcon />
