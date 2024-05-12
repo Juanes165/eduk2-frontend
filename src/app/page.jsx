@@ -50,10 +50,15 @@ export default function Home() {
             NUESTRA INSPIRACIÓN
           </h2>
           <div className="my-4 mx-5 lg:flex lg:flex-row-reverse lg:justify-center lg:items-center 2xl:mx-32">
-            <img src="https://via.placeholder.com/400" className="mb-2 2xl:h-[550px] 2xl:w-[550px]" />
-            <p className="text-xl text-center lg:text-2xl p-4 2xl:mx-11">
-              Francia Rocio Zemanate es una maestra con mas de 30 años de experiencia...
-            </p>
+            <img src="images/TeacherPhoto.jpeg" className="mb-2 2xl:h-[550px] 2xl:w-[550px]" />
+            <div className="flex flex-col w-full md:w-1/2 text-center p-5">
+              <p className="text-xl text-center lg:text-2xl p-4 2xl:mx-11">
+                Francia Rocio Zemanate, docente Licenciada en Ciencias Sociales, especialista en pedagogía lúdica, con una sólida trayectoria de más de 32 años en el campo de la educación pública.
+              </p>
+              <p className="italic text-xl">
+                "Mi experiencia abarca todos los grados de educación básica primaria, donde he tenido el privilegio de trabajar con niños y jóvenes en diversas asignaturas. Mi pasión por la educación me ha llevado a explorar nuevas formas de enseñanza, donde el juego y la diversión son la clave para el aprendizaje significativo."
+              </p>
+            </div>
           </div>
         </section>
       </main>

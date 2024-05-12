@@ -1,29 +1,13 @@
-'use client';
-
 import CourseContentCard from "@/components/Cards/CourseContentCard";
+import { fetchCourseById } from "@/utils/services/data";
 
-let course = {
-    "grade": "6-8",
-    "name": "Physics",
-    "teacher": "Francia Zemanate",
-    "listStudents": [],
-    "listContents": [
-        {
-            "idContenido": "iud8783jd",
-            "title": "Introduction to Physics",
-            "description": "This is the first chapter of the Physics book",
-            "date": "2020-01-01",
-            "listFiles": [
-                "https://www.youtube.com/watch?v=MO83kjHOQ0A",
-                "https://www.youtube.com/watch?v=mCdA4bJAGGk",
-            ]
-        }
-    ]
-}
+export default async function CourseDetail({ searchParams }){
+    let id = searchParams.id;
+    console.log(id);
 
+    const course = await fetchCourseById(id);
 
-export default function CourseDetail({ searchParams }){
-    // let id = searchParams.id;
+    console.log(course);
     
     return(
         <main className="w-full p-5">

@@ -29,3 +29,31 @@ export async function fetchSignUp(data) {
     }
     return data_1
 }
+
+export async function fetchCourses() {
+    const response = await fetch(apiURL + "subjects/v1", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    if (data.error) {
+        throw new Error(data.error)
+    }
+    return data
+}
+
+export async function fetchCourseById(id) {
+    const response = await fetch(apiURL + "subjects/v1/" + id, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const data = await response.json()
+    if (data.error) {
+        throw new Error(data.error)
+    }
+    return data
+}

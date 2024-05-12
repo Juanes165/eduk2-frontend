@@ -6,7 +6,7 @@ export default function InfoCourseCard({ course }) {
       <Link href={`/course/${course.name}?id=${course.id}`}>
         <img 
           src={course.image} 
-          alt={course.id} 
+          alt={course.name} 
           className="rounded-t-lg object-cover"      
         />
         <div className="rounded-b-lg p-4">

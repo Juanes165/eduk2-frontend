@@ -1,38 +1,14 @@
 import React from 'react';
-import InfoCourseCard from "@/components/Cards/InfoCourseCard";
+import InfoCourseCard from "@/components/Cards/InfoCourseCard"
+import { fetchCourses } from "@/utils/services/data"
 
-let courses = [
-    {
-        id: 1,
-        name: "REACT",
-        image: "https://via.placeholder.com/400x200",
-    },
-    {
-        id: 2,
-        name: "Course 2",
-        image: "https://via.placeholder.com/400x200",
-    },
-    {
-        id: 3,
-        name: "Course 3",
-        image: "https://via.placeholder.com/400x200",
-    },
-    {
-        id: 4,
-        name: "Course 4",
-        image: "https://via.placeholder.com/400x200",
-    },
-    {
-        id: 5,
-        name: "Course 5",
-        image: "https://via.placeholder.com/400x200",
-    }
-]
+export default async function Page() {
+    const courses = await fetchCourses();
+    console.log(courses);
 
-function Page() {
     return (
         <div className='h-[93vh] overflow-y-scroll'>
-            <div className="flex flex-wrap w-[200px] justify-center items-center">
+            <div className="flex flex-wrap w-full justify-center items-center">
                 {courses.map((course) => (
                     <InfoCourseCard course={course} key={course.id} />
                 ))}
@@ -40,5 +16,3 @@ function Page() {
         </div>
     );
 }
-
-export default Page;
