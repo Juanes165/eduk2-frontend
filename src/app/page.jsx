@@ -56,7 +56,7 @@ export default function Home() {
                 Francia Rocio Zemanate, docente Licenciada en Ciencias Sociales, especialista en pedagogía lúdica, con una sólida trayectoria de más de 32 años en el campo de la educación pública.
               </p>
               <p className="italic text-xl">
-                "Mi experiencia abarca todos los grados de educación básica primaria, donde he tenido el privilegio de trabajar con niños y jóvenes en diversas asignaturas. Mi pasión por la educación me ha llevado a explorar nuevas formas de enseñanza, donde el juego y la diversión son la clave para el aprendizaje significativo."
+                &lsquo;&lsquo;Mi experiencia abarca todos los grados de educación básica primaria, donde he tenido el privilegio de trabajar con niños y jóvenes en diversas asignaturas. Mi pasión por la educación me ha llevado a explorar nuevas formas de enseñanza, donde el juego y la diversión son la clave para el aprendizaje significativo.&rsquo;&rsquo;
               </p>
             </div>
           </div>
