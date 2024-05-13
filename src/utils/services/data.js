@@ -35,6 +35,9 @@ export async function fetchCourses() {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
+        },
+        next: {
+            revalidate: 1
         }
     })
     const data = await response.json()
