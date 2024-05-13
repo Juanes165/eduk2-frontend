@@ -1,7 +1,13 @@
 import { VideoIcon, ImageIcon, PdfIcon  } from "@/utils/icons/icons";
+import Link from "next/link";
 
 export default function CourseContentCard({ content }) {
     const files = content.listFiles;
+    
+    var date = content.date;
+    var splitDate = date.split(" ");
+    var hour = splitDate[3];
+    var day = splitDate.slice(0, 3).join(" ");
 
     return (
         <div className="w-full bg-main-light text-black rounded-md p-4 shadow-md shadow-gray-400 dark:shadow-none">
@@ -13,24 +19,30 @@ export default function CourseContentCard({ content }) {
                     {content.description}
                 </p>
             </section>
-            <section className="flex flex-col gap-2">
+            <section className="flex flex-col gap-2 mb-4">
                 {files.map((file, index) => {
                     return (
-                        <div key={index} className="flex bg-amethyst dark:bg-grape rounded-md text-white p-2 gap-3">
-                            <div className="flex justify-center rounded-md hover:bg-wisteria dark:hover:bg-amethyst items-center">
-                                <a href={file.url} target="_blank">
+                        <Link href={file.url} key={index} target="_blank" className="flex w-full"> 
+                            <div className="flex bg-amethyst dark:bg-grape rounded-md w-full text-white p-2 gap-3 hover:bg-wisteria dark:hover:bg-amethyst">
+                                <div className="flex justify-center rounded-md items-center">
                                     {file.type === "video" && <VideoIcon />}
-                                    {file.type === "jpg" && <ImageIcon />}
+                                    {file.type === "img" && <ImageIcon />}
                                     {file.type === "pdf" && <PdfIcon />}
-                                </a> 
+                                </div>
+                            
+                                <div className="border border-white" />
+                                <div className="flex items-center justify-center">
+                                    <h3 className="text-xl text-center">{file.name}</h3>
+                                </div>
                             </div>
-                            <div className="border border-white" />
-                            <div className="flex items-center justify-center">
-                                <h3 className="text-xl text-center">{file.name}</h3>
-                            </div>
-                        </div>
+                        </Link>
                     )
                 })}
+            </section>
+            <section className="flex justify-end">
+                <p className="italic text-sm">
+                    Creado en: {day} a las {hour}
+                </p>
             </section>
         </div>
     )

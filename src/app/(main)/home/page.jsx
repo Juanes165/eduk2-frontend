@@ -4,11 +4,10 @@ import { fetchCourses } from "@/utils/services/data"
 
 export default async function Page() {
     const courses = await fetchCourses();
-    console.log(courses);
 
     return (
-        <div className='h-[93vh] overflow-y-scroll'>
-            <div className="flex flex-wrap w-full justify-center items-center">
+        <div className='overflow-y-scroll'>
+            <div className="flex flex-wrap w-full justify-center items-center gap-5 p-4">
                 {courses.map((course) => (
                     <InfoCourseCard course={course} key={course.id} />
                 ))}
