@@ -1,12 +1,12 @@
 export default function TermsConditions({ closeModal }) {
     return (
-        <div className="flex flex-col gap-4 items-center justify-center w-full bg-white absolute overflow-y-scroll pt-10">
-            <button onClick={closeModal} className="absolute top-0 right-0 m-4 text-2xl text-gray-800">X</button>
+        <div className="flex flex-col gap-4 items-center justify-start h-screen md:h-[550px] 2xl:h-[600px] overflow-y-scroll bg-white relative py-10 md:px-20 md:rounded-2xl">
+            <button onClick={closeModal} className="bg-grape px-2 py-0.5 rounded-lg hover:bg-amethyst absolute top-0 right-0 m-2 font-bold text-2xl text-white">x</button>
             <h1 className="text-3xl font-bold text-gray-800">Términos y Condiciones</h1>
-            <div className="text-black px-4">
+            <div className="text-black px-4 w-full">
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">1. Introducción</h2>
-                    <p className="mb-4">Estos Términos y Condiciones de Uso (en adelante, los &ldquo;Términos&ldquo;) regulan el uso de la plataforma educativa (en adelante, la &ldquo;Plataforma&ldquo;) que ofrece [Nombre del Desarrollador de la Aplicación] (en adelante, el &ldquo;Desarrollador&ldquo;). La Plataforma permite a los usuarios acceder a diversos recursos educativos, incluyendo cursos, materiales y herramientas de aprendizaje.</p>
+                    <p className="mb-4">Estos Términos y Condiciones de Uso (en adelante, los &ldquo;Términos&ldquo;) regulan el uso de la plataforma educativa (en adelante, la &ldquo;Plataforma&ldquo;) que ofrece Aragangs.dev (en adelante, el &ldquo;Desarrollador&ldquo;). La Plataforma permite a los usuarios acceder a diversos recursos educativos, incluyendo cursos, materiales y herramientas de aprendizaje.</p>
                 </div>
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">2. Aceptación de los Términos</h2>
@@ -14,13 +14,13 @@ export default function TermsConditions({ closeModal }) {
                 </div>
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">3. Registro y Cuenta de Usuario</h2>
-                    <p className="mb-4">Para utilizar la Plataforma, el Usuario debe registrarse y crear una cuenta de usuario (en adelante, la &ldquo;Cuenta&ldquo;). El Usuario deberá proporcionar al Desarrollador la siguiente información:</p>
+                    <p className="mb-4">Para utilizar la Plataforma, el Usuario debe registrarse y crear una cuenta de usuario (en adelante, la &ldquo;Cuenta&ldquo;). El Usuario deberá proporcionar a la plataforma la siguiente información:</p>
                     <ul className="list-disc ml-8 mb-4">
                         <li>Nombres</li>
                         <li>Apellidos</li>
                         <li>Correo electrónico</li>
                     </ul>
-                    <p className="mb-4">El Usuario es responsable de la exactitud y veracidad de la información proporcionada al Desarrollador. El Usuario también es responsable de mantener la confidencialidad de su contraseña y de cualquier otra información relacionada con su Cuenta.</p>
+                    <p className="mb-4">El Usuario es responsable de la exactitud y veracidad de la información proporcionada a la plataforma. El Usuario también es responsable de mantener la confidencialidad de su contraseña y de cualquier otra información relacionada con su Cuenta.</p>
                 </div>
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">4. Uso de la Plataforma</h2>
@@ -53,7 +53,7 @@ export default function TermsConditions({ closeModal }) {
                 </div>
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">8. Ley Aplicable y Jurisdicción</h2>
-                    <p className="mb-4">Estos Términos se regirán e interpretarán de conformidad con las leyes de [País del Desarrollador]. Cualquier disputa que surja de estos Términos se resolverá exclusivamente por los tribunales competentes de [País del Desarrollador].</p>
+                    <p className="mb-4">Estos Términos se regirán e interpretarán de conformidad con las leyes de Colombia. Cualquier disputa que surja de estos Términos se resolverá exclusivamente por los tribunales competentes de Colombia.</p>
                 </div>
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">9. Disposiciones Generales</h2>
@@ -61,14 +61,7 @@ export default function TermsConditions({ closeModal }) {
                 </div>
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">10. Contacto</h2>
-                    <p className="mb-4">Si tiene alguna pregunta sobre estos Términos, puede ponerse en contacto con el Desarrollador en [Dirección de correo electrónico del Desarrollador].</p>
-                    <p className="mb-4 font-bold">Importante:</p>
-                    <ul className="list-disc ml-8 mb-4">
-                        <li>Estos Términos son solo un ejemplo y es posible que no sean adecuados para todas las aplicaciones educativas.</li>
-                        <li>El Desarrollador debe consultar con un abogado para asegurarse de que los Términos sean adecuados para su aplicación específica.</li>
-                        <li>El Desarrollador debe traducir los Términos al idioma o idiomas en que se ofrece la Plataforma.</li>
-                    </ul>
-                    <p>Espero que esta información le sea útil. Por favor, avíseme si tiene alguna otra pregunta.</p>
+                    <p className="mb-4">Si tiene alguna pregunta sobre estos Términos, puede ponerse en contacto con el Desarrollador en geideran808087@gmail.com.</p>
                 </div>
             </div>
         </div>

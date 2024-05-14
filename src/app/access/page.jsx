@@ -17,7 +17,7 @@ export default function AccessPage() {
     const handleToggle = () => setIsSignIn(!isSignIn);
     
     return (
-        <main className="flex flex-col h-screen overflow-hidden">
+        <main className="flex flex-col h-screen overflow-hidden relative">
             <div className="relative flex">
                 <div className={`absolute top-0 left-0 w-full transition-all duration-500 ${isSignIn ? 'translate-x-0':'-translate-x-full lg:translate-x-0'}`}>
                     <div className="flex p-4 md:p-5 md:mx-8">
@@ -37,9 +37,9 @@ export default function AccessPage() {
                 </div>
             </div>
             {showModalTerms && 
-            <div className="flex justify-center">
-                <TermsConditions closeModal={handleToggleTerms}/>
-            </div>
+                <div className="z-20 md:p-20 2xl:p-40 md:rounded-2xl">
+                    <TermsConditions closeModal={handleToggleTerms}/>
+                </div>
             }
         </main>
     );

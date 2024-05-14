@@ -83,7 +83,7 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
     }
 
     return (
-        <div className="h-full w-full flex flex-col items-center lg:px-12 xl:px-40 2xl:py-16">
+        <div className="h-full w-full flex flex-col lg:px-12 xl:px-40 2xl:py-16">
             <h1 className={`${pressStart2P.className} text-center text-4xl mb-10 font-bold text-white`}>
                 Registro
             </h1>
@@ -141,12 +141,12 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
                         <option key={grado} value={grado}>{grados[grado]}</option>
                     ))} 
                 </select>
-                <div className="w-full col-span-2 flex 2xl:pl-12 items-center">
+                <div className="w-full col-span-2 my-2 flex 2xl:pl-12 items-center">
                     <div className="flex items-center justify-center text-center mx-auto">   
                         <input type="checkbox" className="text-white flex text-center text-lg" />
                     </div>
-                    <label className="text-md md:text-lg 2xl:text-2xl pl-2 2xl:pl-5 text-white w-full">
-                        Acepto los  
+                    <label className="text-md 2xl:text-2xl pl-2 2xl:pl-5 text-white w-full">
+                        Acepto los &nbsp; 
                         <a 
                             onClick={handleToggleTerms}
                             className="text-amethyst hover:text-wisteria hover:cursor-pointer"
