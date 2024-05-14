@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { fetchSignUp } from "@/utils/services/data"
 import { validateEmail, validateName, validatePassword, validatePasswordMatch } from "@/utils/validateFields"
+import TermsConditions from "@/components/Modals/TermsConditions"
 import { ShowPassword } from "@/components/Buttons/ShowPassword"
 import { pressStart2P } from "@/utils/fonts/fonts"
 
-export default function SignUpForm ({ handleToggle }) {
+export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
     const [data, formatData] = useState({ "name": "", "lastname": "", "email": "", "confirmPassword":"", "password": "", "grade": "", "photoUrl": "https://i.stack.imgur.com/l60Hf.png" })
     const [error, setError] = useState(null)
     const [showPassword, setShowPassword] = useState(false)
@@ -82,7 +83,7 @@ export default function SignUpForm ({ handleToggle }) {
     }
 
     return (
-        <div className="h-full w-full items-center lg:px-12 xl:px-40 2xl:py-24">
+        <div className="h-full w-full flex flex-col items-center lg:px-12 xl:px-40 2xl:py-16">
             <h1 className={`${pressStart2P.className} text-center text-4xl mb-10 font-bold text-white`}>
                 Registro
             </h1>
@@ -140,6 +141,20 @@ export default function SignUpForm ({ handleToggle }) {
                         <option key={grado} value={grado}>{grados[grado]}</option>
                     ))} 
                 </select>
+                <div className="w-full col-span-2 flex 2xl:pl-12 items-center">
+                    <div className="flex items-center justify-center text-center mx-auto">   
+                        <input type="checkbox" className="text-white flex text-center text-lg" />
+                    </div>
+                    <label className="text-md md:text-lg 2xl:text-2xl pl-2 2xl:pl-5 text-white w-full">
+                        Acepto los  
+                        <a 
+                            onClick={handleToggleTerms}
+                            className="text-amethyst hover:text-wisteria hover:cursor-pointer"
+                        >
+                            términos y condiciones
+                        </a>.
+                    </label>
+                </div>
                 <button 
                     type="submit" 
                     className="col-span-2 text-white text-base sm:text-xl bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
@@ -147,7 +162,7 @@ export default function SignUpForm ({ handleToggle }) {
                     Registrarse
                 </button>
                 {error && <p className="col-span-2 text-red-500 text-sm text-center">{error}</p>}            
-                <span className="col-span-2 my-2 text-center text-xl text-white sm:text-3xl">¿Ya tienes una cuenta?</span>
+                <span className="col-span-2 my-2 text-center text-xl text-white lg:text-2xl">¿Ya tienes una cuenta?</span>
                 <button 
                     type="button" 
                     onClick={handleToggle} 

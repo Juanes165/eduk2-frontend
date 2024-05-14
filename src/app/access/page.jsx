@@ -4,10 +4,16 @@ import { useState } from "react";
 import Link from "next/link";
 import SignInForm from "@/components/Forms/Access/SignInForm";
 import SignUpForm from "@/components/Forms/Access/SignUpForm";
+import TermsConditions from "@/components/Modals/TermsConditions";
 import { pressStart2P } from "@/utils/fonts/fonts";
 
 export default function AccessPage() {
     const [isSignIn, setIsSignIn] = useState(true);
+    const [showModalTerms, setShowModalTerms] = useState(false)
+
+    const handleToggleTerms = () => {
+        setShowModalTerms(!showModalTerms)
+    }
     const handleToggle = () => setIsSignIn(!isSignIn);
     
     return (
@@ -26,10 +32,15 @@ export default function AccessPage() {
                 </div>
                 <div className={`bg-gradient-to-br from-grape to-amethyst absolute dark:from-violet-dark dark:to-grape top-0 left-0 w-full h-screen transition-all duration-500 lg:inset-0 lg:transform lg:skew-x-12 ${isSignIn ? 'translate-x-full lg:translate-x-[60%]' : 'translate-x-0 lg:translate-x-[30%]'}`}>
                     <div className={`mx-12 my-[15vh] lg:mx-20 xl:mx-40 transition-all duration-500 lg:translate-x-[20%] lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center lg:z-10 lg:-skew-x-12 ${isSignIn ? 'lg:opacity-0 lg:w-1/2' : 'opacity-100 lg:w-1/2'}`}>
-                        <SignUpForm handleToggle={handleToggle}/>
+                        <SignUpForm handleToggle={handleToggle} handleToggleTerms={handleToggleTerms}/>
                     </div>
                 </div>
             </div>
+            {showModalTerms && 
+            <div className="flex justify-center">
+                <TermsConditions closeModal={handleToggleTerms}/>
+            </div>
+            }
         </main>
     );
 }
