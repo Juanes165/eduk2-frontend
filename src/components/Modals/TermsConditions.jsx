@@ -1,9 +1,9 @@
 export default function TermsConditions({ closeModal }) {
     return (
-        <div className="flex flex-col gap-4 items-center justify-start h-screen md:h-[550px] 2xl:h-[600px] overflow-y-scroll bg-white relative py-10 md:px-20 md:rounded-2xl">
+        <div className="flex flex-col gap-4 items-center justify-start md:h-[550px] 2xl:h-[600px]  bg-white relative py-10 md:px-20 md:rounded-2xl">
             <button onClick={closeModal} className="bg-grape px-2 py-0.5 rounded-lg hover:bg-amethyst absolute top-0 right-0 m-2 font-bold text-2xl text-white">x</button>
             <h1 className="text-3xl font-bold text-gray-800">Términos y Condiciones</h1>
-            <div className="text-black px-4 w-full">
+            <div className="text-black px-4 w-full overflow-y-scroll">
                 <div className="text-lg mb-4">
                     <h2 className="text-2xl font-bold mb-2">1. Introducción</h2>
                     <p className="mb-4">Estos Términos y Condiciones de Uso (en adelante, los &ldquo;Términos&ldquo;) regulan el uso de la plataforma educativa (en adelante, la &ldquo;Plataforma&ldquo;) que ofrece Aragangs.dev (en adelante, el &ldquo;Desarrollador&ldquo;). La Plataforma permite a los usuarios acceder a diversos recursos educativos, incluyendo cursos, materiales y herramientas de aprendizaje.</p>
