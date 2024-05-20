@@ -12,10 +12,6 @@ export default function HomeLayout({ children }) {
 
   const { isLogged } = useAuth();
 
-  if (!isLogged) {
-    return redirect('/access');
-  }
-
   const sidebarRef = useRef(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideClick);
@@ -28,6 +24,10 @@ export default function HomeLayout({ children }) {
     if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
       //setOpenedSidebar(false);
     }
+  }
+
+  if (!isLogged) {
+    return redirect('/access');
   }
 
   return (

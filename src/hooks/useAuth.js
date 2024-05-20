@@ -1,6 +1,6 @@
 import { AuthContext } from "@/context/AuthContext";
 import { useContext, useCallback, useState } from "react";
-import { signInService } from "@/services";
+import { signInService, signUpService } from "@/services";
 import { parseJwt } from "@/utils";
 import { useCookies } from "next-client-cookies";
 
@@ -9,6 +9,7 @@ export const useAuth = () => {
     const [ status, setStatus ] = useState({ loading: false, error: null });
 
     const cookies = useCookies();
+
 
     const signIn = useCallback(async (email, password) => {
         setStatus({ loading: true, error: null });
@@ -23,9 +24,25 @@ export const useAuth = () => {
         }
     }, [setToken]);
 
+
     const signInWithGoogle = useCallback(() => {
         window.location.href = process.env.NEXT_PUBLIC_API_URL + "oauth/google";
     }, []);
+
+
+    const signUp = useCallback(async (data) => {
+        setStatus({ loading: true, error: null });
+        try {
+            const { token } = await signUpService(data);
+            cookies.set('token', token, { path: '/', sameSite: 'Lax' });
+            setToken(token);
+            setStatus({ loading: false, error: null });
+        } catch (error) {
+            setStatus({ loading: false, error: error.message });
+            console.log(error)
+        }
+    }, []);
+
 
     const signOut = useCallback(() => {
         cookies.remove('token');
@@ -39,6 +56,7 @@ export const useAuth = () => {
         hasError: status.error,
         signIn,
         signInWithGoogle,
+        signUp,
         signOut,
     };
 };
