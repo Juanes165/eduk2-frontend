@@ -1,12 +1,20 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { Header, Sidebar } from '@/components/Nav';
+import { useAuth } from '@/hooks/useAuth';
+import { redirect } from 'next/navigation';
 
 export default function HomeLayout({ children }) {
 
   const [count, setCount] = useState(0);
   const [openedSidebar, setOpenedSidebar] = useState(!false);
   const toggleSidebar = () => setOpenedSidebar(!openedSidebar);
+
+  const { isLogged } = useAuth();
+
+  if (!isLogged) {
+    return redirect('/access');
+  }
 
   const sidebarRef = useRef(null);
   useEffect(() => {

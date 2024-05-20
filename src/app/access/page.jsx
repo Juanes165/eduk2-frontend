@@ -1,12 +1,19 @@
 'use client';
-
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { redirect } from 'next/navigation';
 import SignInForm from "@/components/Forms/Access/SignInForm";
 import SignUpForm from "@/components/Forms/Access/SignUpForm";
 
 export default function AccessPage() {
     const [isSignIn, setIsSignIn] = useState(true);
     const handleToggle = () => setIsSignIn(!isSignIn);
+
+    const { isLogged } = useAuth();
+
+    if(isLogged) {
+        return redirect('/home')
+    }
     
     return (
         <main className="flex flex-col h-screen overflow-hidden">

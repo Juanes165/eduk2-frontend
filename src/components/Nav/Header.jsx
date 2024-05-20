@@ -1,4 +1,9 @@
+import { useAuth } from "@/hooks/useAuth";
+
 export default function Header({ toggleSidebar }) {
+
+    const { signOut } = useAuth();
+
     return (
         <header className="border-b-[1px] border-main-dark/25 dark:border-main-light/25 h-16 py-2 px-4 flex flex-row">
             {/* deploy sidebar button */}
@@ -12,6 +17,9 @@ export default function Header({ toggleSidebar }) {
             <div className="flex flex-row items-center">
                 <img src="https://via.placeholder.com/200" alt="Logo" className="mx-4 w-12 h-12 rounded-full" />
                 <h1 className="text-3xl font-bold italic">EduK2</h1>
+            </div>
+            <div>
+                <button type="button" onClick={signOut}>Cerrar Sesión</button>
             </div>
         </header>
     )

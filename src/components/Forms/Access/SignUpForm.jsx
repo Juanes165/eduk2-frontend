@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { fetchSignUp } from "@/utils/services/data"
 import { validateEmail, validateName, validatePassword, validatePasswordMatch } from "@/utils/validateFields"
 import { ShowPassword } from "@/components/Buttons/ShowPassword"
 
@@ -62,7 +61,8 @@ export default function SignUpForm ({ handleToggle }) {
             "name": data.name + " " + data.lastname,
             "email": data.email,
             "password": data.password,
-            "grade": data.grade
+            "grade": data.grade,
+            "photoUrl": "https://example.com/photo.jpg"
         }
         try {
             const response = await fetchSignUp(formatedData)

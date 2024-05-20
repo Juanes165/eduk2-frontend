@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/lib/firebase/AuthContext";
+import { AuthContextProvider } from "@/context/AuthContext";
+import { CookiesProvider } from "next-client-cookies/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,9 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <CookiesProvider>
+          <AuthContextProvider>
+            {children}
+          </AuthContextProvider>
+        </CookiesProvider>
       </body>
     </html>
   );
