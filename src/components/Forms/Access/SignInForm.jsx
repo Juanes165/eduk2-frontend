@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { fetchLogin } from '@/utils/services/data';   
-import { linkGoogle } from '@/utils/services/firebase';
+import { useState } from 'react'; 
 import { validateEmail } from '@/utils/validateFields';
 import { ShowPassword } from '@/components/Buttons/ShowPassword';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function SignInForm({ handleToggle }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
+
+    const { isLoading, signIn, signInWithGoogle } = useAuth();
 
     const handleTogglePassword = () => setShowPassword(!showPassword);    
     const handleEmail = (e) => setEmail(e.target.value);
@@ -17,11 +18,6 @@ export default function SignInForm({ handleToggle }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError(null);
-
-        const data = {
-            email,
-            password
-        }
 
         if(!email || !password) {
             setError("Por favor, completa todos los campos.")
@@ -34,15 +30,16 @@ export default function SignInForm({ handleToggle }) {
         }
 
         try {
-            const response = await fetchLogin(data)
-            console.log(response)
-            if(!response.ok) {
-                setError("Correo electrónico o contraseña incorrectos.")
-                return
-            }
+            signIn(email, password)
         } catch (error) {
             setError("Ocurrió un error al iniciar sesión. Por favor, intenta de nuevo.")
+            console.log(error)
         }
+    }
+
+    const handleGoogleButton = (e) => {
+        e.preventDefault()
+        signInWithGoogle()
     }
 
     return (
@@ -75,13 +72,14 @@ export default function SignInForm({ handleToggle }) {
                 <button 
                     type="submit" 
                     className="text-white text-base sm:text-xl bg-amethyst w-full p-2 rounded-md transition-all duration-400 hover:bg-grape dark:bg-grape dark:hover:bg-amethyst"
+                    disabled={isLoading}
                 >
                     Iniciar Sesión
                 </button>
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button 
                     type="button"
-                    onClick={linkGoogle}
+                    onClick={(e) => handleGoogleButton(e)}
                     className="text-base sm:text-xl border-2 dark:text-white border-amethyst w-full p-2 rounded-md transition-all duration-400 hover:border-grape hover:bg-grape hover:text-white dark:border-grape"
                 >
                     <div className="flex gap-3 justify-center">

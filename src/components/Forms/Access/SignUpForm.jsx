@@ -1,13 +1,34 @@
-import { useState } from "react"
-import { fetchSignUp } from "@/utils/services/data"
+import { useEffect, useState } from "react"
 import { validateEmail, validateName, validatePassword, validatePasswordMatch } from "@/utils/validateFields"
 import { ShowPassword } from "@/components/Buttons/ShowPassword"
+import { useAuth } from "@/hooks/useAuth"
+
+const initialUserData = {
+    "name": "Fuan",
+    "lastname": "Chostoy",
+    "email": "tranhp@gmail.com",
+    "password": "p12345",
+    "confirmPassword": "p12345",
+    "grade": "10-2",
+    "photoUrl": "https://i.stack.imgur.com/l60Hf.png"
+}
 
 export default function SignUpForm ({ handleToggle }) {
-    const [data, formatData] = useState({ "name": "", "lastname": "", "email": "", "confirmPassword":"", "password": "", "grade": "", "photoUrl": "https://i.stack.imgur.com/l60Hf.png" })
+    const [data, formatData] = useState(initialUserData)
     const [error, setError] = useState(null)
+
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+    const [grades, setGrades] = useState([])
+
+    const { signUp } = useAuth()
+
+    // FETCH GRADES FROM API
+    useEffect(() => {
+        /* TODO */
+        setGrades(['10-1', '10-2', '10-3', '11-1', '11-2', '11-3'])
+    }, [])
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword)
@@ -59,25 +80,18 @@ export default function SignUpForm ({ handleToggle }) {
         }
 
         const formatedData = {
-            "name": data.name + " " + data.lastname,
+            "name": data.name,
+            "lastname": data.lastname,
             "email": data.email,
             "password": data.password,
-            "grade": data.grade
+            "grade": data.grade,
+            "photoUrl": "https://example.com/photo.jpg"
         }
         try {
-            const response = await fetchSignUp(formatedData)
+            signUp(formatedData)
         } catch (error) {
             console.log(error)
         }
-    }
-    
-    const grados = {
-        "10-1": "10-1",
-        "10-2": "10-2",
-        "10-3": "10-3",
-        "11-1": "11-1",
-        "11-2": "11-2",
-        "11-3": "11-3",
     }
 
     return (
@@ -90,6 +104,7 @@ export default function SignUpForm ({ handleToggle }) {
                     type="text" 
                     placeholder="Nombres"
                     name="name"
+                    value={data.name}
                     onChange={handleChange} 
                     className="text-base sm:text-xl col-span-2 border border-black sm:col-span-1 rounded-md p-2"
                 />
@@ -97,6 +112,7 @@ export default function SignUpForm ({ handleToggle }) {
                     type="text" 
                     placeholder="Apellidos"
                     name="lastname"
+                    value={data.lastname}
                     onChange={handleChange} 
                     className="text-base sm:text-xl col-span-2 border border-black sm:col-span-1 rounded-md p-2"
                 />
@@ -104,6 +120,7 @@ export default function SignUpForm ({ handleToggle }) {
                     type="text" 
                     placeholder="Correo electrónico" 
                     name="email"
+                    value={data.email}
                     onChange={handleChange}
                     className="text-base sm:text-xl border border-black col-span-2 rounded-md p-2"
                 />
@@ -112,6 +129,7 @@ export default function SignUpForm ({ handleToggle }) {
                         type={showPassword? "text" : "password" } 
                         placeholder="Contraseña"
                         name="password"
+                        value={data.password}
                         onChange={handleChange} 
                         className="text-base sm:text-xl border border-black col-span-2 w-full rounded-md p-2"
                     />
@@ -121,8 +139,9 @@ export default function SignUpForm ({ handleToggle }) {
                     <input
                         type={showConfirmPassword ? "text" : "password" } 
                         placeholder="Confirmar contraseña"
+                        name="confirmPassword"
+                        value={data.confirmPassword}
                         onChange={handleChange}
-                        name="confirmPassword" 
                         className="text-base sm:text-xl border border-black col-span-2 w-full rounded-md p-2"
                     />
                     <ShowPassword visibility={showConfirmPassword} handleTogglePassword={handleToggleConfirmPassword} />
@@ -132,11 +151,11 @@ export default function SignUpForm ({ handleToggle }) {
                     defaultValue="Selecciona tu grado"
                     name="grade"
                     onChange={handleChange}
-                    className="text-base text-black sm:text-xl border border-black col-span-2 rounded-md p-2"
+                    className="text-black sm:text-xl border border-black col-span-2 rounded-md p-2 focus:outline-none"
                 >
                     <option value='DEFAULT'>Selecciona tu grado</option>
-                    {Object.keys(grados).map((grado) => (
-                        <option key={grado} value={grado}>{grados[grado]}</option>
+                    {grades.map((grade, index) => (
+                        <option key={index} value={grade}>{grade}</option>
                     ))} 
                 </select>
                 <button 
