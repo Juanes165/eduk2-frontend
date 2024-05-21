@@ -1,6 +1,7 @@
 import { useState } from 'react'; 
 import { validateEmail } from '@/utils/validateFields';
 import { ShowPassword } from '@/components/Buttons/ShowPassword';
+import { pressStart2P } from '@/utils/fonts/fonts';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function SignInForm({ handleToggle }) {
@@ -44,7 +45,7 @@ export default function SignInForm({ handleToggle }) {
 
     return (
         <div className="h-full w-full items-center lg:px-24 xl:px-40 2xl:py-24">
-            <h1 className="text-center text-5xl mb-10 font-bold">Iniciar Sesión</h1>
+            <h1 className={`${pressStart2P.className} text-center text-4xl mb-10`}>Iniciar Sesión</h1>
             <form 
                 onSubmit={handleSubmit} 
                 className="flex flex-col items-center gap-3 w-full text-black"

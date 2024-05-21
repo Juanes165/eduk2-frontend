@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react"
 import { validateEmail, validateName, validatePassword, validatePasswordMatch } from "@/utils/validateFields"
+import TermsConditions from "@/components/Modals/TermsConditions"
 import { ShowPassword } from "@/components/Buttons/ShowPassword"
+
+import { pressStart2P } from "@/utils/fonts/fonts"
+
 import { useAuth } from "@/hooks/useAuth"
 
 const initialUserData = {
-    "name": "Fuan",
-    "lastname": "Chostoy",
-    "email": "tranhp@gmail.com",
-    "password": "p12345",
-    "confirmPassword": "p12345",
-    "grade": "10-2",
+    "name": "",
+    "lastname": "",
+    "email": "",
+    "password": "",
+    "confirmPassword": "",
+    "grade": "",
     "photoUrl": "https://i.stack.imgur.com/l60Hf.png"
 }
 
 export default function SignUpForm ({ handleToggle }) {
     const [data, formatData] = useState(initialUserData)
+
     const [error, setError] = useState(null)
 
     const [showPassword, setShowPassword] = useState(false)
@@ -95,9 +100,9 @@ export default function SignUpForm ({ handleToggle }) {
     }
 
     return (
-        <div className="h-full w-full items-center lg:px-12 xl:px-40 2xl:py-24">
-            <h1 className="text-center text-5xl mb-10 font-bold text-white">
-                Registrarse
+        <div className="h-full w-full flex flex-col lg:px-12 xl:px-40 2xl:py-16">
+            <h1 className={`${pressStart2P.className} text-center text-4xl mb-10 font-bold text-white`}>
+                Registro
             </h1>
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2 text-black">
                 <input 
@@ -158,6 +163,20 @@ export default function SignUpForm ({ handleToggle }) {
                         <option key={index} value={grade}>{grade}</option>
                     ))} 
                 </select>
+                <div className="w-full col-span-2 my-2 flex 2xl:pl-12 items-center">
+                    <div className="flex items-center justify-center text-center mx-auto">   
+                        <input type="checkbox" className="text-white flex text-center text-lg" />
+                    </div>
+                    <label className="text-md 2xl:text-2xl pl-2 2xl:pl-5 text-white w-full">
+                        Acepto los &nbsp; 
+                        <a 
+                            onClick={handleToggleTerms}
+                            className="text-amethyst hover:text-wisteria hover:cursor-pointer"
+                        >
+                            términos y condiciones
+                        </a>.
+                    </label>
+                </div>
                 <button 
                     type="submit" 
                     className="col-span-2 text-white text-base sm:text-xl bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
@@ -165,7 +184,7 @@ export default function SignUpForm ({ handleToggle }) {
                     Registrarse
                 </button>
                 {error && <p className="col-span-2 text-red-500 text-sm text-center">{error}</p>}            
-                <span className="col-span-2 my-2 text-center text-xl text-white sm:text-3xl">¿Ya tienes una cuenta?</span>
+                <span className="col-span-2 my-2 text-center text-xl text-white lg:text-2xl">¿Ya tienes una cuenta?</span>
                 <button 
                     type="button" 
                     onClick={handleToggle} 
