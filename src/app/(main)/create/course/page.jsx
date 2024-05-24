@@ -45,7 +45,7 @@ export default function CreateCourse() {
     return(
         <main className="w-full h-full p-5 md:max-w-[70%] md:px-10 2xl:px-20">
             <section>
-                <h1 className="text-5xl font-bold mb-3">CREAR CURSO</h1>
+                <h1 className="text-5xl font-bold mb-3">Crear curso</h1>
                 <div className="border-2 border-amethyst dark:border-grape"/>
             </section>
             <section className="mt-5">
@@ -81,12 +81,12 @@ export default function CreateCourse() {
                     type="submit"
                     className="col-span-2 text-white text-base font-semibold sm:text-xl bg-amethyst dark:bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
                 >
-                    CREAR
+                    Crear
                 </button>
                 </form>
             </section>
             <section className="mt-5">
-                <h2 className="text-3xl font-bold mb-2">VISTA PREVIA:</h2>
+                <h2 className="text-3xl font-bold mb-2">Vista previa:</h2>
                 <div className="border-2 mb-4 border-amethyst dark:border-grape"/>
                 <PreviewCard coursePreview={data}/>
             </section>
