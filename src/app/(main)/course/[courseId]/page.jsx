@@ -6,7 +6,7 @@ export default async function CourseDetail({ searchParams }){
     const course = await fetchCourseById(id);
     
     return(
-        <main className="max-w-[70%] p-5">
+        <main className="w-full md:max-w-[70%] p-5">
             <section className="flex justify-between mb-3">
                 <h1 className="font-bold text-5xl">
                     {course.name.toUpperCase()}

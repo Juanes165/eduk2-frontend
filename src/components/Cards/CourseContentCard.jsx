@@ -5,9 +5,11 @@ export default function CourseContentCard({ content }) {
     const files = content.listFiles;
     
     var date = content.date;
+    console.log(date)
     var splitDate = date.split(" ");
     var hour = splitDate[3];
     var day = splitDate.slice(0, 3).join(" ");
+    console.log(day)
 
     return (
         <div className="w-full bg-main-light text-black rounded-md p-4 shadow-md shadow-gray-400 dark:shadow-none">
