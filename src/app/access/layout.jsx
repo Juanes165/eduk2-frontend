@@ -1,9 +1,7 @@
-export default function Layout({ children, signin, signup }){
+export default function Layout({ children }){
     return (
         <>
             {children}
-            {signin}
-            {signup}
         </>
     )
 }

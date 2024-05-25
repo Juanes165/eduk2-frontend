@@ -1,3 +1,5 @@
+import axios from "axios"
+
 const apiURL = process.env.NEXT_PUBLIC_API_URL
 
 import axios from "axios"
@@ -40,51 +42,6 @@ export async function fetchSignUp(data) {
         throw new Error(data_1.error)
     }
     return data_1
-}
-
-export async function fetchCourses() {
-    /*
-        Fetches the courses data from the API
-        Gets all the courses available
-        @returns {Promise} - The data from the API
-    */
-    const response = await fetch(apiURL + "subjects/v1", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        next: {
-            revalidate: 1
-        }
-    })
-    const data = await response.json()
-    if (data.error) {
-        throw new Error(data.error)
-    }
-    return data
-}
-
-export async function fetchCourseById(id) {
-    /*
-        Fetches the course data from the API
-        Gets a course data by the id
-        @param {String} id - The id of the course
-        @returns {Promise} - The data from the API
-    */
-    const response = await fetch(apiURL + "subjects/v1/" + id, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        next: {
-            revalidate: 1
-        }
-    })
-    const data = await response.json()
-    if (data.error) {
-        throw new Error(data.error)
-    }
-    return data
 }
 
 

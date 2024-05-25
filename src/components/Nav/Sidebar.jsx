@@ -1,25 +1,23 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function Sidebar({ openedSidebar, sidebarRef }) {
 
     const [showNav, setShowNav] = useState(true);
-    const [subjects, setSubjects] = useState([]);
 
-    useEffect(() => {
-        setSubjects(exampleSubjects);
-    }, []);
+    const { user, courses } = useAuth();
 
     return (
-        <aside ref={sidebarRef} className={`group overflow-x-hidden border-r-[1px] border-main-dark/25 dark:border-main-light/25 bg-main-light dark:bg-main-dark z-50 overflow-auto flex flex-col justify-between ${openedSidebar ? "" : "-translate-x-64 lg:w-20 lg:translate-x-0"} px-4 py-4 absolute lg:sticky lg:top-16 w-64 transition-all duration-200 h-[calc(100vh-4rem)] hover:w-64`}>
+        <aside ref={sidebarRef} className={`group overflow-x-hidden border-r-[1px] border-main-dark/25 dark:border-main-light/25 bg-main-light dark:bg-main-dark z-50 overflow-auto flex flex-col justify-between ${openedSidebar ? "" : "-translate-x-64 lg:w-20 lg:translate-x-0"} px-4 py-4 absolute lg:sticky lg:top-16 w-64 transition-all duration-200 h-[calc(100dvh-4rem)] hover:w-64`}>
             {/* first half, profile picture, name and achievements */}
             <div className='mb-6'>
                 <div className={`${openedSidebar ? "px-8" : "px-8 lg:px-0"} mb-4 group-hover:px-8 group-hover:mb-4 text-center transition-all duration-200`}>
 
                     {/* Profile picture */}
                     <div className="relative">
-                        <img src="https://via.placeholder.com/300" alt="Logo" className="mb-4 rounded-full" />
+                        <img src={user.photoUrl} onError={(e) => e.target.src='/images/avatar.svg'} alt="Logo" className="mb-4 rounded-full bg-gray-500" />
                         <Link href="/profile">
                             <div className={`absolute top-0 right-0 ${openedSidebar ? "flex" : "hidden"} group-hover:flex w-full h-full rounded-full items-center justify-center bg-transparent cursor-pointer hover:bg-main-dark/25 text-main-light/0 hover:text-main-light transition-all duration-200`}>
                                 <span className='text-2xl font-semibold'>Ver perfil</span>
@@ -29,7 +27,7 @@ export default function Sidebar({ openedSidebar, sidebarRef }) {
 
                     {/* Name */}
                     <span className={` ${openedSidebar ? "opacity-100 delay-100" : "opacity-0 delay-0"} group-hover:opacity-100 group-hover:delay-100 text-lg text-nowrap font-semibold`}>
-                        Nombre Apellido
+                        {user.name + " " + user.lastname}
                     </span>
                 </div>
 
@@ -42,7 +40,7 @@ export default function Sidebar({ openedSidebar, sidebarRef }) {
                 </div>
             </div>
 
-            {/* second half, subjects navigation */}
+            {/* second half, courses navigation */}
             <div>
                 <div className='w-full border-t-[1px] border-main-dark/25 dark:border-main-light/25 mb-2'></div>
 
@@ -59,16 +57,16 @@ export default function Sidebar({ openedSidebar, sidebarRef }) {
                     </svg>
                 </button>
 
-                {/* subjects */}
+                {/* courses */}
                 {showNav && (
                     <nav className={`delay-200 ${openedSidebar ? "flex" : ""} group-hover:flex group-hover:visible`}>
                         <ul className='w-full'>
-                            {subjects.map((subject, index) => (
+                            {courses.map((course, index) => (
                                 <li className='mt-2' key={index}>
-                                    <Link href={subject.href} className='flex items-center w-full rounded-xl border-main-dark/25 dark:border-main-light/50 px-3 py-1 text-lg hover:bg-platinum dark:hover:bg-violet-dark'>
+                                    <Link href={'course/' + course.id} className='flex items-center w-full rounded-xl border-main-dark/25 dark:border-main-light/50 px-3 py-1 text-lg hover:bg-platinum dark:hover:bg-violet-dark'>
                                         <div className='flex'>
-                                            <img src={subject.imageUrl} alt="Logo" className="mr-5 w-8 h-8 rounded-full" />
-                                            <span className='align-middle'>{subject.name}</span>
+                                            <img src={course.urlPhoto} alt="Logo" className="mr-5 w-8 h-8 rounded-full" />
+                                            <span className='align-middle'>{course.name}</span>
                                         </div>
                                     </Link>
                                 </li>
@@ -80,36 +78,3 @@ export default function Sidebar({ openedSidebar, sidebarRef }) {
         </aside>
     );
 };
-
-const exampleSubjects = [
-    {
-        name: 'Matemáticas',
-        href: '#',
-        imageUrl: 'https://via.placeholder.com/100',
-    },
-    {
-        name: 'Ciencias',
-        href: '#',
-        imageUrl: 'https://via.placeholder.com/100',
-    },
-    {
-        name: 'Español',
-        href: '#',
-        imageUrl: 'https://via.placeholder.com/100',
-    },
-    {
-        name: 'Matemáticas',
-        href: '#',
-        imageUrl: 'https://via.placeholder.com/100',
-    },
-    {
-        name: 'Matemáticas',
-        href: '#',
-        imageUrl: 'https://via.placeholder.com/100',
-    },
-    {
-        name: 'Matemáticas',
-        href: '#',
-        imageUrl: 'https://via.placeholder.com/100',
-    }
-]

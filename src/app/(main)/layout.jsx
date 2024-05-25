@@ -34,9 +34,9 @@ export default function HomeLayout({ children }) {
     <section className='max-h-screen overflow-hidden'>
       {/* Include shared UI here e.g. a header or sidebar */}
       <Header toggleSidebar={toggleSidebar} />
-      <div className='flex flex-row'>
+      <div className='flex flex-row justify-between'>
         <Sidebar openedSidebar={openedSidebar} sidebarRef={sidebarRef} />
-        <div className='grow overflow-y-scroll w-full overflow-x-hidden h-[calc(100vh-4rem)]'>
+        <div className={`max-w-full ${openedSidebar ? 'md:max-w-[calc(100vw-256px)]' : 'md:max-w-[calc(100vw-256px)]'} grow no-scrollbar overflow-x-hidden h-[calc(100dvh-4rem)]`}>
           {children}  
         </div>
       </div>
