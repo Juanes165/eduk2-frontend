@@ -13,10 +13,8 @@ export default function CourseDetailsPage({ params }){
         })
     }, []);
 
-    if (course){
-      const courseName = course.name;
-      const courseModName = courseName[0].toUpperCase() + courseName.slice(1);
-    }
+    const courseName = course?.name;
+    const courseModName = courseName ? courseName[0].toUpperCase() + courseName.slice(1) : 'Curso';
     
     return(
         <main className="w-full md:max-w-[70%] p-5">
