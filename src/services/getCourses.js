@@ -6,9 +6,11 @@ export default async function getCourses() {
             "Content-Type": "application/json"
         }
     }).then(response => {
+        console.log(response.data)
         return response.data
     }
     ).catch(error => {
         console.error(error.message)
+        return []
     })
 }
