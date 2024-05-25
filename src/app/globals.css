@@ -4,22 +4,12 @@
 
 :root {
   --background-rgb: 249, 248, 253;
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 7, 13, 31;
 }
 
-html {
-  @apply text-main-dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-rgb: 7, 13, 31;
-    --foreground-rgb: 255, 255, 255;
-  }
-
-  html {
-    @apply text-main-light;
-  }
+:root.dark {
+  --background-rgb: 7, 13, 31;
+  --foreground-rgb: 249, 248, 253;
 }
 
 body {
