@@ -5,7 +5,6 @@ import TeacherView from './teacherView';
 
 export default function HomePage() {
     const { user } = useAuth();
-    console.log(user.role);
 
     if(user.role === 'student') {
         return <StudentView />

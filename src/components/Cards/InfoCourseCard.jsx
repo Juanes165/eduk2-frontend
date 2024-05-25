@@ -10,12 +10,12 @@ export default function InfoCourseCard({ course }) {
   }
 
   return (
-    <div className="flex flex-col w-full md:max-w-[400px] border border-black border-opacity-15 hover:shadow-xl dark:border-4 dark:border-transparent dark:hover:border-amethyst 2xl:h-[260px] shadow-md shadow-gray-300 dark:shadow-none hover:cursor-pointer rounded-lg bg-main-light">
+    <div className="flex flex-col w-full md:w-[300px] 2xl:w-[400px] 2xl:h-[250px] border border-black border-opacity-15 hover:shadow-xl shadow-md shadow-gray-300 dark:shadow-none hover:cursor-pointer rounded-lg bg-main-light">
       <Link href={`/course/${course.id}`}>
         <img
           src={courseImage}
           alt={course.name}
-          className="rounded-t-lg object-cover w-full h-[200px]"      
+          className="rounded-t-lg object-cover w-full h-[100px] 2xl:h-[180px]"      
         />
         <div className="rounded-b-lg p-4">
           <h3 className="text-2xl text-main-dark font-bold">{course.name}</h3>
