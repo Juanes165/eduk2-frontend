@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'selector',
   theme: {
     extend: {
       'animation': {
@@ -14,6 +15,7 @@ module.exports = {
         'spin-slow': 'spin-slow 15s linear infinite',
         'reverse-spin-slow': 'reverse-spin-slow 15s linear infinite',
         'bg-bottom-top': 'bg-bottom-top 40s linear infinite',
+        'float': 'float 2s infinite',
       },
       'keyframes': {
         'gradient-y': {
@@ -68,6 +70,17 @@ module.exports = {
           },
           '100%': {
             'transform': 'translateY(-55%)'
+          },
+        },
+        'float': {
+          '0%': {
+            'transform': 'translateY(0px)',
+          },
+          '50%': {
+            'transform': 'translateY(-10px)',
+          },
+          '100%': {
+            'transform': 'translateY(0px)',
           },
         },
       },

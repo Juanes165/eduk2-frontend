@@ -1,7 +1,13 @@
 import axiosInstance from "@/utils/axios"
 
 export default async function getCourseById(id) {
-    console.log('xd')
+    /*
+        Fetches the course data from the API
+        Gets the course content by id
+        @param {String} id - The id of the course
+        @returns {Promise} - The data from the API
+    */
+   
     return axiosInstance.get("subjects/v1/" + id, {
         headers: {
             "Content-Type": "application/json",

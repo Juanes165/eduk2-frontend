@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import PreviewCard from "@/components/Cards/PreviewCard";
-import { fetchCourseImagesOptions, fetchCreateCourse } from "@/utils/services/data";
+import { getImagesService, createCourseService } from "@/services";
 
 let coursePreview = {
     name : "",
@@ -18,7 +18,7 @@ export default function CreateCourse() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetchCreateCourse(data);
+        await createCourseService(data);
     }
 
     // FETCH GRADES FROM API
@@ -29,7 +29,7 @@ export default function CreateCourse() {
 
     useEffect(() => {
         const fetchImages = async () => {
-            const images = await fetchCourseImagesOptions();
+            const images = await getImagesService();
             setImages(images);
         }
         fetchImages();

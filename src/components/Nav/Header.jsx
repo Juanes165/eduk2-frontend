@@ -1,10 +1,15 @@
 import { pressStart2P } from "@/utils/fonts/fonts"
 import Link from "next/link"
 import { useAuth } from "@/hooks/useAuth";
+import DarkModeToggle from "@/components/Buttons/DarkModeToggle";
 
 export default function Header({ toggleSidebar }) {
 
     const { signOut } = useAuth();
+
+    const handleDarkMode = () => {
+        document.documentElement.classList.toggle('dark')
+    }
 
     return (
         <header className="border-b-[1px] lg:sticky lg:top-0 border-main-dark/25 dark:border-main-light/25 h-16 py-2 px-4 flex flex-row justify-between bg-main-light dark:bg-main-dark">
@@ -19,7 +24,8 @@ export default function Header({ toggleSidebar }) {
                 {/* logo */}
                 <div className="flex">
                     <Link href={'/home'} className="flex flex-row items-center">
-                        <img src="https://via.placeholder.com/200" alt="Logo" className="mx-4 w-12 h-12 rounded-full" />
+                        <img src="/logoLight.png" alt="Logo" className="mx-4 block dark:hidden w-12 h-12 rounded-full" />
+                        <img src="/logoDark.png" alt="Logo" className="mx-4 hidden dark:block w-12 h-12 rounded-full" />
                         <h1 className={`text-3xl ${pressStart2P.className}`}>EDUK2</h1>
                     </Link>
                 </div>
@@ -27,6 +33,7 @@ export default function Header({ toggleSidebar }) {
             <nav className="mr-10 flex flex-row items-center w-fit">
                 <span className="mr-3 text-xl hidden md:inline-block">Inicio</span>
                 <span className="mr-3 text-xl hidden md:inline-block">Foro</span>
+                <DarkModeToggle handleDarkMode={handleDarkMode} />
                 <button type="button" className="flex flex-row items-center" onClick={signOut}>
                     <span className="mr-3 text-xl hidden md:inline-block">Salir</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24">
