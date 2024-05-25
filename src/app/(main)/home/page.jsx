@@ -1,16 +1,15 @@
 'use client';
-import InfoCourseCard from "@/components/Cards/InfoCourseCard"
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from '@/hooks/useAuth';
+import StudentView from './studentView';
+import TeacherView from './teacherView';
 
 export default function HomePage() {
-    
-    const { courses } = useAuth();
+    const { user } = useAuth();
+    console.log(user.role);
 
-    return (
-        <div className="flex flex-wrap w-full justify-center items-center gap-5 p-4">
-            {courses?.map((course) => (
-                <InfoCourseCard course={course} key={course.id} />
-            ))}
-        </div>
-    );
+    if(user.role === 'student') {
+        return <StudentView />
+    }else if(user.role === 'teacher') {
+        return <TeacherView />
+    }
 }

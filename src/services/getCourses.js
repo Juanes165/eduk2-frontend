@@ -10,5 +10,6 @@ export default async function getCourses() {
     }
     ).catch(error => {
         console.error(error.message)
+        return []
     })
 }
