@@ -2,7 +2,14 @@ import axios from "axios"
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL
 
+import axios from "axios"
+
 export async function fetchLogin(data) {
+    /*
+        Fetches the login data to the API
+        @param {Object} data - The data to be sent to the API
+        @returns {Promise} - The data from the API
+    */ 
     const response = await fetch(apiURL + "auth/v1/login", {
         method: "POST",
         headers: {
@@ -18,6 +25,11 @@ export async function fetchLogin(data) {
 }
 
 export async function fetchSignUp(data) {
+    /*
+        Fetches the signup data to the API
+        @param {Object} data - The data to be sent to the API
+        @returns {Promise} - The data from the API
+    */
     const response = await fetch(apiURL + "auth/v1/register", {
         method: "POST",
         headers: {
@@ -32,20 +44,31 @@ export async function fetchSignUp(data) {
     return data_1
 }
 
-export async function fetchCourseById(id, token) {
-    const response = await fetch(apiURL + "subjects/v1/" + id, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
-        },
-        next: {
-            revalidate: 1
-        }
+
+export async function fetchCourseImagesOptions() {
+    /*
+        Fetches the course images data from the API
+        Gets all the course images available
+        @returns {Promise} - The data from the API
+    */
+    return axios.get(apiURL + "subjects/images/v1")
+    .then((response) => {
+        console.log(response.data)
+        return response.data
     })
-    const data = await response.json()
-    if (data.error) {
-        throw new Error(data.error)
-    }
-    return data
+}
+
+export async function fetchCreateCourse(data) {
+    /*
+        Fetches the create course data to the API
+        @param {Object} data - The data to be sent to the API
+        @returns {Promise} - The data from the API
+    */
+    return axios.post(apiURL + "subjects/v1", data)
+    .then((response) => {
+        console.log(response.status);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 }
