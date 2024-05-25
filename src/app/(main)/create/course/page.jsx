@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import PreviewCard from "@/components/Cards/PreviewCard";
 import { getImagesService, createCourseService } from "@/services";
+import Link from "next/link";
 
 let coursePreview = {
     name : "",
@@ -77,12 +78,14 @@ export default function CreateCourse() {
                             <option key={index} value={image.url}>{index + 1}</option>
                         ))} 
                     </select>
-                    <button 
-                    type="submit"
-                    className="col-span-2 text-white text-base font-semibold sm:text-xl bg-amethyst dark:bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
-                >
-                    Crear
-                </button>
+                    <Link href="/home">
+                        <button 
+                        type="submit"
+                        className="col-span-2 text-white text-base font-semibold sm:text-xl bg-amethyst dark:bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
+                        >
+                            Crear
+                        </button>
+                    </Link>
                 </form>
             </section>
             <section className="mt-5">
