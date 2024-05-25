@@ -2,8 +2,6 @@ import axios from "axios"
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL
 
-import axios from "axios"
-
 export async function fetchLogin(data) {
     /*
         Fetches the login data to the API
