@@ -4,12 +4,14 @@ import { fetchCourseById } from "@/utils/services/data";
 export default async function CourseDetail({ searchParams }){
     let id = searchParams.id;
     const course = await fetchCourseById(id);
+    const courseName = course.name;
+    const courseModName = courseName[0].toUpperCase() + courseName.slice(1);
     
     return(
-        <main className="max-w-[70%] p-5">
+        <main className="w-full md:max-w-[70%] p-5">
             <section className="flex justify-between mb-3">
                 <h1 className="font-bold text-5xl">
-                    {course.name.toUpperCase()}
+                    {courseModName}
                 </h1>
                 <p className="text-sm flex items-end justify-end">{course.teacher}</p>
             </section>

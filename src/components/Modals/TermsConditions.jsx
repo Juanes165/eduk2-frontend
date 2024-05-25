@@ -1,7 +1,7 @@
 export default function TermsConditions({ closeModal }) {
     return (
         <div className="flex flex-col gap-4 items-center justify-start md:h-[550px] 2xl:h-[600px]  bg-white relative py-10 md:px-20 md:rounded-2xl">
-            <button onClick={closeModal} className="bg-grape px-2 py-0.5 rounded-lg hover:bg-amethyst absolute top-0 right-0 m-2 font-bold text-2xl text-white">x</button>
+            <button onClick={closeModal} className="bg-grape px-3 pt-2 pb-1.5 rounded-lg hover:bg-amethyst absolute top-0 right-0 m-2 font-bold text-2xl text-white">X</button>
             <h1 className="text-3xl font-bold text-gray-800">Términos y Condiciones</h1>
             <div className="text-black px-4 w-full overflow-y-scroll">
                 <div className="text-lg mb-4">

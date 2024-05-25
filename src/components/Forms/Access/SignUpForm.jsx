@@ -17,7 +17,7 @@ const initialUserData = {
     "photoUrl": "https://i.stack.imgur.com/l60Hf.png"
 }
 
-export default function SignUpForm ({ handleToggle }) {
+export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
     const [data, formatData] = useState(initialUserData)
 
     const [error, setError] = useState(null)
