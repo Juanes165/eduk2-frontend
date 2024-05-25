@@ -1,11 +1,10 @@
 import { AuthContext } from "@/context/AuthContext";
 import { useContext, useCallback, useState } from "react";
 import { signInService, signUpService } from "@/services";
-import { parseJwt } from "@/utils";
 import { useCookies } from "next-client-cookies";
 
 export const useAuth = () => {
-    const { token, setToken, user } = useContext(AuthContext);
+    const { token, setToken, user, courses } = useContext(AuthContext);
     const [ status, setStatus ] = useState({ loading: false, error: null });
 
     const cookies = useCookies();
@@ -50,7 +49,8 @@ export const useAuth = () => {
     }, [setToken]);
 
     return {
-        ...user,
+        user: {...user},
+        courses: courses,
         isLogged: Boolean(token),
         isLoading: status.loading,
         hasError: status.error,

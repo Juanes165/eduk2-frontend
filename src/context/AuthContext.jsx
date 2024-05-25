@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createContext } from "react";
 import { useCookies } from "next-client-cookies";
 import { parseJwt } from "@/utils";
+import { getCoursesService } from "@/services";
 
 export const AuthContext = createContext();
 
@@ -11,6 +12,7 @@ export function AuthContextProvider({ children }) {
     const cookies = useCookies();
     
     const [user, setUser] = useState(null);
+    const [courses, setCourses] = useState([]);
     const [token, setToken] = useState(
         () => cookies.get('token')
     );
@@ -23,6 +25,10 @@ export function AuthContextProvider({ children }) {
         try {
             const user = parseJwt(token).user;
             setUser(user);
+            getCoursesService()
+            .then((courses) => {
+                setCourses(courses);
+            });
         }
         catch (error) {
             console.log(error)
@@ -34,6 +40,7 @@ export function AuthContextProvider({ children }) {
         <AuthContext.Provider
             value={{
                 user,
+                courses,
                 token,
                 setToken,
             }}
