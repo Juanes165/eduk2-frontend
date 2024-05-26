@@ -25,10 +25,11 @@ export function AuthContextProvider({ children }) {
         try {
             const user = parseJwt(token).user;
             setUser(user);
-            getCoursesService()
-            .then((courses) => {
+            const updateServices = async () => {
+                const courses = await getCoursesService();
                 setCourses(courses);
-            });
+            }
+            updateServices();
         }
         catch (error) {
             console.log(error)

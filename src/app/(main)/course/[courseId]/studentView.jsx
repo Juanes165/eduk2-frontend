@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import CourseContentCard from "@/components/Cards/CourseContentCard";
 import { getCourseByIdService } from "@/services";
+import CourseViewSkeleton from "./CourseViewSkeleton";
 
 export default function StudentView({ params }){
  
@@ -15,6 +16,8 @@ export default function StudentView({ params }){
 
     const courseName = course?.name;
     const courseModName = courseName ? courseName[0].toUpperCase() + courseName.slice(1) : 'Curso';
+
+    if(courseModName === 'Curso') return <CourseViewSkeleton/>
     
     return(
         <main className="w-full md:max-w-[70%] p-5">

@@ -1,8 +1,9 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { Header, Sidebar } from '@/components/Nav';
 import { useAuth } from '@/hooks/useAuth';
 import { redirect } from 'next/navigation';
+import Loading from './loading';
 
 export default function HomeLayout({ children }) {
 
@@ -37,7 +38,9 @@ export default function HomeLayout({ children }) {
       <div className='flex flex-row justify-between'>
         <Sidebar openedSidebar={openedSidebar} sidebarRef={sidebarRef} />
         <div className={`max-w-full ${openedSidebar ? 'md:max-w-[calc(100vw-256px)]' : 'md:max-w-[calc(100vw-256px)]'} grow no-scrollbar overflow-x-hidden h-[calc(100dvh-4rem)]`}>
-          {children}  
+          <Suspense fallback={<Loading/>}>
+            {children}  
+          </Suspense>
         </div>
       </div>
     </section>

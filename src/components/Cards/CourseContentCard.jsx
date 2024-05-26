@@ -25,9 +25,9 @@ export default function CourseContentCard({ content }) {
                         <Link href={file.url} key={index} target="_blank" className="flex w-full"> 
                             <div className="flex bg-amethyst dark:bg-grape rounded-md w-full text-white p-2 gap-3 hover:bg-wisteria dark:hover:bg-amethyst">
                                 <div className="flex justify-center rounded-md items-center">
-                                    {file.type === "video" && <VideoIcon />}
-                                    {file.type === "img" && <ImageIcon />}
-                                    {file.type === "pdf" && <PdfIcon />}
+                                    {file.type === "video" && <VideoIcon className='h-12 w-12' />}
+                                    {file.type === "img" && <ImageIcon className='h-12 w-12' />}
+                                    {file.type === "pdf" && <PdfIcon className='h-12 w-12' />}
                                 </div>
                             
                                 <div className="border border-white" />

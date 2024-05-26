@@ -8,8 +8,10 @@ export default function StudentView() {
 
     return (
         <div className="flex flex-wrap w-full justify-center items-center gap-5 p-4">
-            {courses?.map((course) => (
-                <InfoCourseCard course={course} key={course.id} />
+            {courses?.map((course, index) => (
+                <div key={index}>
+                    <InfoCourseCard course={course} />
+                </div>
             ))}
         </div>
     );

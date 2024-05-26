@@ -63,7 +63,7 @@ export default function Sidebar({ openedSidebar, sidebarRef }) {
                         <ul className='w-full'>
                             {courses.map((course, index) => (
                                 <li className='mt-2' key={index}>
-                                    <Link href={'course/' + course.id} className='flex items-center w-full rounded-xl border-main-dark/25 dark:border-main-light/50 px-3 py-1 text-lg hover:bg-platinum dark:hover:bg-violet-dark'>
+                                    <Link href={'/course/' + course.id} className='flex items-center w-full rounded-xl border-main-dark/25 dark:border-main-light/50 px-3 py-1 text-lg hover:bg-platinum dark:hover:bg-violet-dark'>
                                         <div className='flex'>
                                             <img src={course.urlPhoto} alt="Logo" className="mr-5 w-8 h-8 rounded-full" />
                                             <span className='align-middle'>{course.name}</span>
