@@ -10,6 +10,6 @@ export default function CourseDetailsPage({ params }){
     if(user.role === 'student'){
         return <StudentView params={params}/>
     }else if(user.role === 'teacher'){
-        return <TeacherView/>
+        return <TeacherView params={params}/>
     }
 }
