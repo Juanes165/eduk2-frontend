@@ -29,7 +29,8 @@ export default function AccessPage() {
                 <div className={`absolute top-0 left-0 w-full transition-all duration-500 ${isSignIn ? 'translate-x-0':'-translate-x-full lg:translate-x-0'}`}>
                     <div className="flex p-4 md:p-5 md:mx-8">
                         <Link href={'/'} className="flex gap-3 items-center">
-                            <img src="https://via.placeholder.com/100" className="mb-1 h-10 w-10 md:h-12 md:w-12 rounded-full"></img>
+                            <img src="logoLight.png" className="block dark:hidden mb-1 h-10 w-10 md:h-12 md:w-12 rounded-full" />
+                            <img src="logoDark.png" className="hidden dark:block mb-1 h-10 w-10 md:h-12 md:w-12 rounded-full" />
                             <h1 className={`${pressStart2P.className} text-3xl md:text-4xl text-center font-bold`}>EDUK2</h1>
                         </Link>
                     </div>
