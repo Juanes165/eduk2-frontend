@@ -31,12 +31,11 @@ export default function DragAndDrop({ files, setFiles }) {
     return (
         <section className="bg-amethyst/10 dark:bg-wisteria/20 rounded-lg">
             <div
-                onClick={() => document.getElementById("browse").click()}
                 onDrop={handleDrop}
                 onDragOver={(event) => event.preventDefault()}
                 onDragEnter={() => setDragging(true)}
                 onDragLeave={() => setDragging(false)}
-                className={`flex flex-col items-center justify-center relative rounded-lg cursor-pointer p-4
+                className={`flex flex-col items-center justify-center relative rounded-lg p-4
                 border-4 border-dashed border-amethyst dark:border-grape transition-all duration-150
                 ${dragging ? "bg-amethyst/20 dark:bg-wisteria/5" : "bg-transparent"}`}
             >

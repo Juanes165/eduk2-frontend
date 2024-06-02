@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import PreviewCard from "@/components/Cards/PreviewCard";
 import { getImagesService, createCourseService } from "@/services";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 let coursePreview = {
     name : "",
-    teacher: "Francia Zemanate",
     grade: "",
-    urlPhoto: "",        
+    urlPhoto: "",
+    // iconId: ""        
 }
 
 export default function CreateCourse() {
@@ -17,9 +17,13 @@ export default function CreateCourse() {
     const [images, setImages] = useState([]);
     const [grades, setGrades] = useState([]);
 
+    const router = useRouter();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await createCourseService(data);
+        await createCourseService(data).then(() => {
+            window.location.href = '/home';
+        });
     }
 
     // FETCH GRADES FROM API
@@ -78,14 +82,12 @@ export default function CreateCourse() {
                             <option key={index} value={image.url}>{index + 1}</option>
                         ))} 
                     </select>
-                    <Link href="/home">
-                        <button 
-                        type="submit"
-                        className="col-span-2 text-white text-base font-semibold sm:text-xl bg-amethyst dark:bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
-                        >
-                            Crear
-                        </button>
-                    </Link>
+                    <button 
+                    type="submit"
+                    className="col-span-2 text-white text-base font-semibold sm:text-xl bg-amethyst dark:bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
+                    >
+                        Crear
+                    </button>
                 </form>
             </section>
             <section className="mt-5">

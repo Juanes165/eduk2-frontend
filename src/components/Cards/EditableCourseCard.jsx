@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EditCourseIcon, DeleteCourseIcon } from "@/utils/icons/icons";
+import { motion } from "framer-motion";
 
 export default function EditableCourseCard({ course }) {
   let courseImage = "";
@@ -11,7 +11,7 @@ export default function EditableCourseCard({ course }) {
   }
 
   return (
-    <div className="flex flex-col w-full md:w-[300px] 2xl:w-[400px] 2xl:h-[250px] border border-black border-opacity-15 hover:shadow-xl shadow-md shadow-gray-300 dark:shadow-none hover:cursor-pointer rounded-lg bg-main-light">
+    <div className="hover:scale-105 duration-200 transition-all flex flex-col w-full md:w-[300px] 2xl:w-[400px] border border-black border-opacity-15 hover:shadow-xl shadow-md shadow-gray-300 dark:shadow-none hover:cursor-pointer rounded-lg bg-main-light">
         <img
           src={courseImage}
           alt={course.name}
