@@ -5,5 +5,5 @@ export { default as getCourseByIdService } from './getCourseById';
 export { default as getImagesService } from './getCourseImages';
 export { default as createCourseService } from './createCourse';
 export { default as createContentService } from './createContent';
-export { default as getForumByIdService } from './getforumById';
+export { default as getForumByIdService } from './getForumById';
 export { default as getForumsService } from './getForums';
