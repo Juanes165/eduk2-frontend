@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useState } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -74,6 +75,62 @@ const TableCaption = React.forwardRef(({ className, ...props }, ref) => (
 ))
 TableCaption.displayName = "TableCaption"
 
+// New component for pagination controls
+const Pagination = ({ currentPage, totalPages, onPageChange }) => (
+  <div className="flex justify-center space-x-2 mt-2">
+    <button
+      onClick={() => onPageChange(currentPage - 1)}
+      disabled={currentPage === 1}
+      className="px-4 py-2 bg-gray-200 text-gray-600 disabled:opacity-50"
+    >
+      Previous
+    </button>
+    <span className="px-4 py-2">
+      Page {currentPage} of {totalPages}
+    </span>
+    <button
+      onClick={() => onPageChange(currentPage + 1)}
+      disabled={currentPage === totalPages}
+      className="px-4 py-2 bg-gray-200 text-gray-600 disabled:opacity-50"
+    >
+      Next
+    </button>
+  </div>
+)
+
+// Enhanced Table component with pagination
+const PaginatedTable = ({ data, className, ...props }) => {
+  const rowsPerPage = 10
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const totalPages = Math.ceil(data.length / rowsPerPage)
+  const currentData = data.slice(
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
+  )
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page)
+    }
+  }
+
+  return (
+    <div>
+      <Table className={className} {...props}>
+        {props.children({
+          currentData,
+        })}
+      </Table>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+    </div>
+  )
+}
+
 export {
   Table,
   TableHeader,
@@ -83,4 +140,5 @@ export {
   TableRow,
   TableCell,
   TableCaption,
+  PaginatedTable, // Export the new paginated table component
 }

@@ -1,21 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
 import { TableHead, TableRow, TableHeader, TableBody, Table, TableCell } from "@/components/ui/table"
+import { getGradesService, getAlumnsService } from "@/services"
 import { DialogTitle, DialogDescription, DialogHeader, DialogFooter, DialogContent, Dialog } from "@/components/ui/dialog"
 
 const TableListStudents = () => {
 
-  const initialStudents = [
-    { id: 1, name: 'Juan Perez', class: 'Grade 9', email: 'juan.perez@example.com', phone: '123-456-7890', status: 'Burned' },
-    { id: 2, name: 'Maria Lopez', class: 'Grade 10', email: 'maria.lopez@example.com', phone: '123-456-7891', status: 'Burned' },
-    { id: 3, name: 'Carlos Sanchez', class: 'Grade 11', email: 'carlos.sanchez@example.com', phone: '123-456-7892', status: 'Burned' },
-  ];
-
-  const [students, setStudents] = useState(initialStudents);
-  const [originalStudents, setOriginalStudents] = useState(initialStudents);
+  const [students, setStudents] = useState([]);
+  const [originalStudents, setOriginalStudents] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isAscending, setIsAscending] = useState(true);
+  const [grades, setGrades] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
+
+  useEffect(() => {
+    getGradesService()
+      .then((response) => {
+        setGrades(response);
+      })
+      console.log(grades, "tran")
+  }, [])
+
+  useEffect(() => {
+    getAlumnsService()
+      .then((response) => {
+        setStudents(response);
+        setOriginalStudents(response);
+      })
+      console.log(students, "tren")
+  }, []);
 
   const resetStudents = () => {
     setStudents([...originalStudents]);
@@ -27,6 +42,7 @@ const TableListStudents = () => {
       student.name.toLowerCase().includes(value.toLowerCase())
     );
     setStudents(filteredStudents);
+    setCurrentPage(1);
     if (!value) {
       resetStudents();
     }
@@ -38,10 +54,11 @@ const TableListStudents = () => {
       resetStudents();
     } else {
       const filteredStudents = originalStudents.filter((student) =>
-        student.class.toLowerCase().includes(value.toLowerCase())
+        student.grade.toLowerCase().includes(value.toLowerCase())
       );
       setStudents(filteredStudents);
     }
+    setCurrentPage(1);
   };
 
   const handleSortByName = () => {
@@ -83,6 +100,14 @@ const TableListStudents = () => {
     handleCloseDialog();
   };
 
+  // Pagination
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const paginatedStudents = students.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
+  const totalPages = Math.ceil(students.length / rowsPerPage);
 
   return (
     <div className="w-full max-w-6xl mx-auto p-4 md:p-6 lg:p-8">
@@ -95,7 +120,7 @@ const TableListStudents = () => {
             onChange={handleSearch}
           />
           <button
-            className="bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800 w-60"
+            className="bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 w-80 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
             size="sm"
             variant="outline"
             onClick={handleSortByName}
@@ -104,38 +129,35 @@ const TableListStudents = () => {
           </button>
           <select
             id="countries"
-            className="bg-gray-50 border border-gray-300  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={handleFilterByClass}
           >
             <option selected>Clase</option>
-            {["Grade 9", "Grade 10", "Grade 11"].map((clase) => (
+            {grades.map((clase) => (
               <option key={clase} value={clase}>{clase}</option>
             ))}
           </select>
-
         </div>
       </div>
       <div className="overflow-x-auto">
-        <Table className="w-full border-collapse border     border-gray-300 dark:border-gray-800">
+        <Table className="w-full border-collapse border border-gray-300 dark:border-gray-800">
           <TableHeader>
             <TableRow>
               <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Nombre</TableHead>
               <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Clase</TableHead>
               <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Email</TableHead>
-              <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Telefono</TableHead>
               <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Puntos</TableHead>
-              <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2 text-right">Actions</TableHead>
+              <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2 text-right">Actiones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {students.map(student => (
+            {paginatedStudents.map(student => (
               <TableRow key={student.id}>
-                <TableCell className="border-b     dark:border-gray-700 px-4 py-2">{student.name}</TableCell>
-                <TableCell className="border-b     dark:border-gray-700 px-4 py-2">{student.class}</TableCell>
-                <TableCell className="border-b     dark:border-gray-700 px-4 py-2">{student.email}</TableCell>
-                <TableCell className="border-b     dark:border-gray-700 px-4 py-2">{student.phone}</TableCell>
-                <TableCell className="border-b     dark:border-gray-700 px-4 py-2">{student.status}</TableCell>
-                <TableCell className="border-b     dark:border-gray-700 px-4 py-2 text-right">
+                <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.name}</TableCell>
+                <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.grade}</TableCell>
+                <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.email}</TableCell>
+                <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.points}</TableCell>
+                <TableCell className="border-b dark:border-gray-700 px-4 py-2 text-right">
                   <button className="mr-2" size="sm" variant="outline" onClick={() => handleOpenDialog(student)}>Edit</button>
                 </TableCell>
               </TableRow>
@@ -143,9 +165,36 @@ const TableListStudents = () => {
           </TableBody>
         </Table>
       </div>
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-4">
+          <button
+            className={`px-3 py-1 border rounded-md mx-1 ${currentPage === 1 ? 'cursor-not-allowed' : ''}`}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Anterior
+          </button>
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              className={`px-3 py-1 border rounded-md mx-1 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : ''}`}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            className={`px-3 py-1 border rounded-md mx-1 ${currentPage === totalPages ? 'cursor-not-allowed' : ''}`}
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Siguiente
+          </button>
+        </div>
+      )}
       {selectedStudent && (
         <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-          <DialogContent className="sm:max-w-[425px] bg-white border-gray-300  rounded-md shadow-md dark:border-gray-800">
+          <DialogContent className="sm:max-w-[425px] bg-white border-gray-300 rounded-md shadow-md dark:border-gray-800">
             <DialogHeader>
               <DialogTitle className="text-lg font-bold">Editar</DialogTitle>
               <DialogDescription>Actualiza la informacion</DialogDescription>
@@ -158,50 +207,17 @@ const TableListStudents = () => {
                   id="name"
                   disabled
                   value={selectedStudent.name}
-                  onChange={handleInputChange}
                 />
               </div>
-              {/* 
-              <div className="grid items-center grid-cols-4 gap-4">
-                <label className="text-right font-medium text-gray-700 dark:text-gray-300" htmlFor="class">Clase</label>
-                <input
-                  className="col-span-3 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
-                  id="class"
-                  disabled
-                  value={selectedStudent.class}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="grid items-center grid-cols-4 gap-4">
-                <label className="text-right font-medium text-gray-700 dark:text-gray-300" htmlFor="email">Email</label>
-                <input
-                  className="col-span-3 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
-                  id="email"
-                  disabled
-                  value={selectedStudent.email}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="grid items-center grid-cols-4 gap-4">
-                <label className="text-right font-medium text-gray-700 dark:text-gray-300" htmlFor="phone">Telefono</label>
-                <input
-                  className="col-span-3 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
-                  id="phone"
-                  disabled
-                  value={selectedStudent.phone}
-                  onChange={handleInputChange}
-                />
-              </div> */}
               <div className="grid items-center grid-cols-4 gap-4">
                 <label className="text-right font-medium text-gray-700 dark:text-gray-300" htmlFor="status">Puntos</label>
                 <input
                   className="col-span-3 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
                   id="status"
-                  value={selectedStudent.status}
+                  placeholder={selectedStudent.points}
                   onChange={handleInputChange}
                 />
               </div>
-
             </div>
             <DialogFooter>
               <button className="mr-2 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800" variant="outline" onClick={handleCloseDialog}>Cancel</button>
