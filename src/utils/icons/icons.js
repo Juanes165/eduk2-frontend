@@ -6,23 +6,11 @@ export const VideoIcon = (props) => {
     )
 }
 
-// export const ImageIcon = () => {
-//     return (
-//         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#ffffff">
-//             <path d="M0 0h24v24H0z" fill="none" />
-//             <path d="M20 18V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zM6 18l3-4 2.25 3 3-4.5L18 18H6z" />
-//         </svg>
-//     )
-// }
-
-// export const PdfIcon = () => {
-//     return (
-//         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#ffffff">
-//             <path d="M0 0h24v24H0z" fill="none" />
-//             <path d="M16 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-4-6zm-2 15H8v-2h6v2zm0-4H8v-2h6v2zm0-4H8V7h6v2zm2-5.66L18.07 7H16V2.34zM13 13V4.08L17.92 9H13z" />
-//         </svg>
-//     )
-// }
+export function GoBackIcon(props) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" {...props} width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="m2.87 7.75l1.97 1.97a.75.75 0 1 1-1.06 1.06L.53 7.53L0 7l.53-.53l3.25-3.25a.75.75 0 0 1 1.06 1.06L2.87 6.25h9.88a3.25 3.25 0 0 1 0 6.5h-2a.75.75 0 0 1 0-1.5h2a1.75 1.75 0 1 0 0-3.5z" clipRule="evenodd"/></svg>
+    )
+}
 
 export const DeleteIcon = (props) => {
     return (
@@ -31,6 +19,7 @@ export const DeleteIcon = (props) => {
         </svg>
     )
 }
+
 export const Trophy = (props) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24 " {...props}>

@@ -7,3 +7,5 @@ export { default as createCourseService } from './createCourse';
 export { default as createContentService } from './createContent';
 export { default as getForumByIdService } from './getForumById';
 export { default as getForumsService } from './getForums';
+export { default as getSummaryForumsService } from './getSummaryForums';
+export { default as createCommentService } from './createComment';

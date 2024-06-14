@@ -8,6 +8,9 @@ module.exports = {
   darkMode: 'selector',
   theme: {
     extend: {
+      'zIndex': {
+        '100' : '100',
+      },
       'animation': {
         'gradient-x':'gradient-x 10s ease infinite',
         'gradient-y':'gradient-y 10s ease infinite',

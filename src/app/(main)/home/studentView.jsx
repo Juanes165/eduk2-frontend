@@ -1,63 +1,23 @@
 'use client';
+
+import { useState, useEffect } from "react";
 import InfoCourseCard from "@/components/Cards/InfoCourseCard"
 import { useAuth } from "@/hooks/useAuth";
 import ForumContainer from "@/components/Common/ForumContainer";
 import ForumCard from "@/components/Cards/ForumCard";
+import { getForumsService } from "@/services"
 
-const discutions = [
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    }
-]
 
 export default function StudentView() {
+
+    const [discutions, setDiscutions] = useState([])
+
+    useEffect(() => {
+        getForumsService()
+            .then((response) => {
+                setDiscutions(response)
+            })
+    },[])
     
     const { courses } = useAuth();
 
@@ -74,7 +34,7 @@ export default function StudentView() {
                     ))}
                 </div>
             </div>
-            <div className="h-full hidden md:block md:w-[30%] p-10 fixed right-0 top-11">
+            <div className=" hidden md:flex md:w-[30%] p-10 fixed right-0 top-11">
                 <ForumContainer>
                     {discutions.map((forum, index) => (
                         <ForumCard key={index} forum={forum}/>
