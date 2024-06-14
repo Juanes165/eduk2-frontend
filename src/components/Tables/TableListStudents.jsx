@@ -115,7 +115,7 @@ const TableListStudents = () => {
         <div className="flex flex-col md:flex-row items-center gap-4 mt-4 md:mt-0">
           <input
             className="w-full max-w-[200px] bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
-            placeholder="Search students..."
+            placeholder="Buscar Estudiante... "
             type="search"
             onChange={handleSearch}
           />
@@ -158,7 +158,7 @@ const TableListStudents = () => {
                 <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.email}</TableCell>
                 <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.points}</TableCell>
                 <TableCell className="border-b dark:border-gray-700 px-4 py-2 text-right">
-                  <button className="mr-2" size="sm" variant="outline" onClick={() => handleOpenDialog(student)}>Edit</button>
+                  <button className="mr-2" size="sm" variant="outline" onClick={() => handleOpenDialog(student)}>Editar</button>
                 </TableCell>
               </TableRow>
             ))}
@@ -177,7 +177,7 @@ const TableListStudents = () => {
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`px-3 py-1 border rounded-md mx-1 ${currentPage === index + 1 ? 'bg-blue-500 text-white' : ''}`}
+              className={`px-3 py-1 border rounded-md mx-1 ${currentPage === index + 1 ? 'bg-grape text-white' : ''}`}
               onClick={() => handlePageChange(index + 1)}
             >
               {index + 1}
@@ -203,7 +203,7 @@ const TableListStudents = () => {
               <div className="grid items-center grid-cols-4 gap-4">
                 <label className="text-right font-medium text-gray-700 dark:text-gray-300" htmlFor="name">Nombre</label>
                 <input
-                  className="col-span-3 bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
+                  className="col-span-3 bg-white border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800 dark:text-black"
                   id="name"
                   disabled
                   value={selectedStudent.name}
