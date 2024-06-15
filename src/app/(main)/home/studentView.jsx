@@ -22,24 +22,13 @@ export default function StudentView() {
     const { courses } = useAuth();
 
     return (
-        <main className="flex h-full w-full">
-            <div className="w-full h-full p-5 md:max-w-[65%]">
-                <div className="flex flex-wrap w-full justify-center items-center gap-5 p-4">
+        <main className="flex h-full">
+            <div className="flex flex-wrap w-full justify-center items-center gap-5 p-4">
+                <section className="w-full mb-12 flex flex-wrap justify-center gap-4">
                     {courses?.map((course, index) => (
-                        <section key={index} className="w-full mb-12">
-                            <div className="w-full flex flex-wrap gap-4">
-                                <InfoCourseCard key={index} course={course} />
-                            </div>
-                        </section>
+                        <InfoCourseCard key={index} course={course} />
                     ))}
-                </div>
-            </div>
-            <div className=" hidden md:flex md:w-[30%] p-10 fixed right-0 top-11">
-                <ForumContainer>
-                    {discutions.map((forum, index) => (
-                        <ForumCard key={index} forum={forum}/>
-                    ))}
-                </ForumContainer>
+                </section>
             </div>
         </main>
     );
