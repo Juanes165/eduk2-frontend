@@ -1,9 +1,24 @@
 'use client';
+
+import { useState, useEffect } from "react";
 import InfoCourseCard from "@/components/Cards/InfoCourseCard"
 import { useAuth } from "@/hooks/useAuth";
+import ForumContainer from "@/components/Common/ForumContainer";
+import ForumCard from "@/components/Cards/ForumCard";
+import { getForumsService } from "@/services"
+
 
 export default function StudentView() {
 
+    const [discutions, setDiscutions] = useState([])
+
+    useEffect(() => {
+        getForumsService()
+            .then((response) => {
+                setDiscutions(response)
+            })
+    },[])
+    
     const { courses } = useAuth();
 
     return (
