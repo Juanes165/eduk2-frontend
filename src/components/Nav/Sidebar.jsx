@@ -10,7 +10,7 @@ export default function Sidebar({ openedSidebar, sidebarRef }) {
     const { user, courses } = useAuth();
 
     return (
-        <aside ref={sidebarRef} className={`group overflow-x-hidden border-r-[1px] border-main-dark/25 dark:border-main-light/25 bg-main-light dark:bg-main-dark z-50 overflow-auto flex flex-col justify-between ${openedSidebar ? "" : "-translate-x-64 lg:w-20 lg:translate-x-0"} px-4 py-4 absolute lg:sticky lg:top-16 w-64 transition-all duration-200 h-[calc(100dvh-4rem)] hover:w-64`}>
+        <aside ref={sidebarRef} className={`group overflow-x-hidden border-r-[1px] border-main-dark/25 dark:border-main-light/25 bg-main-light dark:bg-main-dark z-10 overflow-auto flex flex-col justify-between ${openedSidebar ? "" : "-translate-x-64 lg:w-20 lg:translate-x-0"} px-4 py-4 absolute lg:sticky lg:top-16 w-64 transition-all duration-200 h-[calc(100dvh-4rem)] hover:w-64`}>
             {/* first half, profile picture, name and achievements */}
             <div className='mb-6'>
                 <div className={`${openedSidebar ? "px-8" : "px-8 lg:px-0"} mb-4 group-hover:px-8 group-hover:mb-4 text-center transition-all duration-200`}>

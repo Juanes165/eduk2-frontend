@@ -1,49 +1,29 @@
 import Link from "next/link"
 
-const discution = [
-    {
-        "forumId": "y6rVy50B0791uOF2imb1",
-        "title": "¿Qué quiere decir esto?",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget metus eu augue tempor efficitur.",
-        "listfiles": [
-          {
-            "name": "ExposiciÃ³n EsIA.pdf",
-            "type": "pdf",
-            "url": "http://res.cloudinary.com/dkpaodcue/image/upload/v1717370805/zl8mtakrmvnyvha6utb7.pdf"
-          }
-        ],
-        "date": "Feb 19 2024 10:20:04",
-        "tagSubject": {
-          "grade": "10-2",
-          "name": "Quimica",
-          "id": "fdkjdf99"
-        },
-        "userName": "Juan Esteban Montaño",
-        "userId": "8i3iis9iakjfx",
-        "photoUrl": "https://image.jpg"
-    },
-]
-
-export default function InfoDiscutionCard({ discution, discutionId }) {
+export default function InfoDiscutionCard({ discution }) {
     return (
-        <main className="items-center mb-5 bg-white rounded-xl shadow-sm shadow-gray-400 p-4 dark:text-black">
-            <Link href={`/discution/${discutionId}}`}>
-                <div className="flex items-center justify-between">
-                    <img src={discution.photoUrl} alt="user" className="w-12 h-12 rounded-full"/>
-                    <div className="ml-3">
-                        <h1 className="font-bold text-lg">{discution.userName}</h1>
-                        <p className="text-sm">{discution.date}</p>
+        <main className="items-center mb-5 bg-white rounded-xl shadow-sm shadow-gray-400 p-4 dark:text-black hover:scale-[1.01] transition-all duration-100">
+            <div className="flex items-center justify-between">
+                <div className="flex justify-center items-center bg-amethyst rounded-xl">
+                    <div className="bg-white min-w-[57px] h-[50px] border-amethyst flex justify-center items-center border-2 p-2 rounded-l-xl">
+                        <p className="font-bold">{discution.tagSubject.grade}</p>
                     </div>
-                    <div className="text-xs text-white bg-amethyst rounded-xl p-2">
+                    <div className="text-xs text-white text-start flex p-2 font-semibold">
                         <p>{discution.tagSubject.name}</p>
-                        <p>{discution.tagSubject.grade}</p>
                     </div>
                 </div>
-                <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-amethyst to-transparent my-5"/>
-                <div className="mt-3">
-                    <h1 className="font-bold text-2xl">{discution.title}</h1>
+                <div className="ml-3 text-center">
+                    <h1 className="font-bold text-lg">{discution.userName}</h1>
+                    <p className="text-sm">{discution.date}</p>
                 </div>
-            </Link>
+                <div>
+                        
+                </div>
+            </div>
+            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-amethyst to-transparent my-5"/>
+            <div className="mt-3">
+                <h1 className="font-bold text-2xl">{discution.title}</h1>
+            </div>
         </main>
     )
 }

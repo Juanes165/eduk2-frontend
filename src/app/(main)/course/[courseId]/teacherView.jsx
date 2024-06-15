@@ -4,11 +4,14 @@ import CourseContentCard from "@/components/Cards/CourseContentCard";
 import { getCourseByIdService } from "@/services";
 import CreateContent from "@/components/Forms/Content/CreateContent";
 import CourseViewSkeleton from "./CourseViewSkeleton";
+import ForumContainer from "@/components/Common/ForumContainer";
+import { getForumsService } from "@/services";
 
 export default function StudentView({ params }) {
 
     const [course, setCourse] = useState(null);
     const [showCreateContent, setShowCreateContent] = useState(false);
+    const [discutions, setDiscutions] = useState([]);
 
     useEffect(() => {
         getCourseByIdService(params.courseId).then(response => {

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from "react";
 import EditableCourseCard from "@/components/Cards/EditableCourseCard"
 import ConfirmDelete from "@/components/Modals/ConfirmDelete";
 import { CreateCourseIcon } from "@/utils/icons/icons";
@@ -7,61 +8,17 @@ import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 import ForumContainer from "@/components/Common/ForumContainer";
 import ForumCard from "@/components/Cards/ForumCard";
-
-const discutions = [
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    },
-    {
-        "title": "¿Qué quiere decir esto?",
-        "tagSubject": {
-            "grade": "10-2",
-            "name": "Quimica",
-            "id": "fdkjdf99"
-        },
-        "date": "Feb 19 2024 10:20:04",
-        "userName":"Juan Esteban Montaño", 
-    }
-]
+import { getSummaryForumsService } from "@/services";
 
 export default function TeacherView() {
+    const [discutions, setDiscutions] = useState([])
+
+    useEffect(() => {
+        getSummaryForumsService().then((data) => {
+            setDiscutions(data)
+        })
+    }, [])
+
     const { courses } = useAuth();
 
     if (!courses) return (
