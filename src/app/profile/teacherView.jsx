@@ -1,20 +1,13 @@
 'use client';
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
-import { redirect } from 'next/navigation';
 import DeleteAccount from "@/components/Modals/DeleteAccount";
 import { pressStart2P } from "@/utils/fonts/fonts";
-import Image from "next/image";
 import { Header } from "@/components/Nav";
-import AchievementList from "@/components/Achievement/AchievementList";
-import { Trophy, DeleteIcon } from "@/utils/icons/icons";
+import { DeleteIcon } from "@/utils/icons/icons";
 import TableListStudents from "@/components/Tables/TableListStudents";
 
-
-
-
-export default function teacherView() {
+export default function TeacherView() {
 
     const { user } = useAuth();
 
