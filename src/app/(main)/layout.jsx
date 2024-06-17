@@ -45,11 +45,7 @@ export default function HomeLayout({ children }) {
               {children}
             </Suspense>
             <div className={`h-fit hidden md:block sticky top-8`}>
-              <ForumContainer>
-                {discutions.map((forum, index) => (
-                  <ForumCard key={index} forum={forum} />
-                ))}
-              </ForumContainer>
+              <ForumContainer />
             </div>
           </div>
         </div>
