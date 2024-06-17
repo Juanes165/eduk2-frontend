@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import { TableHead, TableRow, TableHeader, TableBody, Table, TableCell } from "@/components/ui/table"
 import { getGradesService, getAlumnsService } from "@/services"
 import { DialogTitle, DialogDescription, DialogHeader, DialogFooter, DialogContent, Dialog } from "@/components/ui/dialog"
+import { addPointsService } from '@/services';
 
 const TableListStudents = () => {
 
@@ -12,6 +12,7 @@ const TableListStudents = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isAscending, setIsAscending] = useState(true);
   const [grades, setGrades] = useState([]);
+  const [points, setPoints] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 5;
 
@@ -20,7 +21,6 @@ const TableListStudents = () => {
       .then((response) => {
         setGrades(response);
       })
-      console.log(grades, "tran")
   }, [])
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const TableListStudents = () => {
         setStudents(response);
         setOriginalStudents(response);
       })
-      console.log(students, "tren")
   }, []);
 
   const resetStudents = () => {
@@ -92,12 +91,21 @@ const TableListStudents = () => {
   };
 
   const handleSave = () => {
-    setStudents((prevStudents) =>
-      prevStudents.map((student) =>
-        student.id === selectedStudent.id ? selectedStudent : student
-      )
-    );
-    handleCloseDialog();
+    addPointsService(
+      { id: selectedStudent.id,
+        points: parseInt(points)
+      }
+    ).then(() => {
+      setStudents((prevStudents) =>
+        prevStudents.map((student) =>
+          student.id === selectedStudent.id
+            ? { ...student, points: parseInt(points) }
+            : student
+        )
+      );
+      setPoints(0);
+      handleCloseDialog();
+    });
   };
 
   // Pagination
@@ -131,9 +139,9 @@ const TableListStudents = () => {
             id="countries"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={handleFilterByClass}
-            value={grades}
+            value={grades[0] || "Clase"}
           >
-            <option selected>Clase</option>
+            <option>Clase</option>
             {grades.map((clase, index) => (
               <option key={index} value={clase}>{clase}</option>
             ))}
@@ -216,7 +224,8 @@ const TableListStudents = () => {
                   className="col-span-3 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-amethyst focus:border-amethyst dark:border-gray-800"
                   id="status"
                   placeholder={selectedStudent.points}
-                  onChange={handleInputChange}
+                  onChange={(e) => setPoints(e.target.value)}
+                  value={points}
                 />
               </div>
             </div>

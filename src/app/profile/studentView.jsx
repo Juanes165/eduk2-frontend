@@ -10,10 +10,7 @@ import { Header } from "@/components/Nav";
 import AchievementList from "@/components/Achievement/AchievementList";
 import { Trophy, DeleteIcon } from "@/utils/icons/icons";
 
-
-
-
-export default function studentView() {
+export default function StudentView() {
 
     const { user } = useAuth();
     console.log(user);
