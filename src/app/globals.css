@@ -5,11 +5,13 @@
 :root {
   --background-rgb: 249, 248, 253;
   --foreground-rgb: 7, 13, 31;
+  scrollbar-width: thin;
 }
 
 :root.dark {
   --background-rgb: 7, 13, 31;
   --foreground-rgb: 249, 248, 253;
+  scrollbar-width: thin;
 }
 
 body {

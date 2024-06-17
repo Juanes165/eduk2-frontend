@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react"
 import { validateEmail, validateName, validatePassword, validatePasswordMatch } from "@/utils/validateFields"
-import TermsConditions from "@/components/Modals/TermsConditions"
 import { ShowPassword } from "@/components/Buttons/ShowPassword"
-
-import { pressStart2P } from "@/utils/fonts/fonts"
-
 import { useAuth } from "@/hooks/useAuth"
+import { LoadingIcon } from "@/utils/icons/icons"
 
 const initialUserData = {
     "name": "",
@@ -17,7 +14,7 @@ const initialUserData = {
     "photoUrl": "https://i.stack.imgur.com/l60Hf.png"
 }
 
-export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
+export default function SignUpForm({ handleToggle, handleToggleTerms }) {
     const [data, formatData] = useState(initialUserData)
 
     const [error, setError] = useState(null)
@@ -27,7 +24,7 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
 
     const [grades, setGrades] = useState([])
 
-    const { signUp } = useAuth()
+    const { isLoading, signUp } = useAuth()
 
     // FETCH GRADES FROM API
     useEffect(() => {
@@ -58,7 +55,7 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
             setError("Por favor, completa todos los campos.")
             return
         }
-        
+
         if (!validateName(data.name)) {
             setError("Por favor, ingresa un nombre válido.")
             return
@@ -100,30 +97,30 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
     }
 
     return (
-        <div className="h-full w-full flex flex-col lg:px-12 xl:px-40 2xl:py-16">
-            <h1 className={`${pressStart2P.className} text-center text-4xl mb-10 font-bold text-white`}>
+        <div className="w-full max-w-[500px] flex flex-col">
+            <h1 className="text-center font-bold text-4xl mb-10 text-white">
                 Registro
             </h1>
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2 text-black">
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="Nombres"
                     name="name"
                     value={data.name}
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     className="text-base sm:text-xl col-span-2 border border-black sm:col-span-1 rounded-md p-2"
                 />
                 <input
-                    type="text" 
+                    type="text"
                     placeholder="Apellidos"
                     name="lastname"
                     value={data.lastname}
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     className="text-base sm:text-xl col-span-2 border border-black sm:col-span-1 rounded-md p-2"
                 />
                 <input
-                    type="text" 
-                    placeholder="Correo electrónico" 
+                    type="text"
+                    placeholder="Correo electrónico"
                     name="email"
                     value={data.email}
                     onChange={handleChange}
@@ -131,18 +128,18 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
                 />
                 <div className="w-full col-span-2 relative">
                     <input
-                        type={showPassword? "text" : "password" } 
+                        type={showPassword ? "text" : "password"}
                         placeholder="Contraseña"
                         name="password"
                         value={data.password}
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         className="text-base sm:text-xl border border-black col-span-2 w-full rounded-md p-2"
                     />
                     <ShowPassword visibility={showPassword} handleTogglePassword={handleTogglePassword} />
                 </div>
                 <div className="w-full col-span-2 relative">
                     <input
-                        type={showConfirmPassword ? "text" : "password" } 
+                        type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirmar contraseña"
                         name="confirmPassword"
                         value={data.confirmPassword}
@@ -152,7 +149,7 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
                     <ShowPassword visibility={showConfirmPassword} handleTogglePassword={handleToggleConfirmPassword} />
                 </div>
                 <select
-                    size="1" 
+                    size="1"
                     defaultValue="Selecciona tu grado"
                     name="grade"
                     onChange={handleChange}
@@ -161,38 +158,66 @@ export default function SignUpForm ({ handleToggle, handleToggleTerms }) {
                     <option value='DEFAULT'>Selecciona tu grado</option>
                     {grades.map((grade, index) => (
                         <option key={index} value={grade}>{grade}</option>
-                    ))} 
+                    ))}
                 </select>
-                <div className="w-full col-span-2 my-2 flex 2xl:pl-12 items-center">
-                    <div className="flex items-center justify-center text-center mx-auto">   
-                        <input type="checkbox" className="text-white flex text-center text-lg" />
-                    </div>
-                    <label className="text-md 2xl:text-2xl pl-2 2xl:pl-5 text-white w-full">
-                        Acepto los &nbsp; 
-                        <a 
+                {error && <p className="col-span-2 text-red-500 text-sm text-center">{error}</p>}
+
+                <div className="relative w-full col-span-2 my-2 flex items-center pl-8">
+                    <input
+                        type="checkbox"
+                        id="acceptTerms"
+                        name="acceptTerms"
+                        className="appearance-none w-5 h-5 shrink-0 border border-violet-dark rounded-sm bg-main-light
+                            checked:bg-grape checked:border-0 peer
+                            focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-wisteria"
+                    />
+                    <label className="text-md 2xl:text-2xl pl-2 2xl:pl-5 text-main-light">
+                        Acepto los&nbsp;
+                        <span
                             onClick={handleToggleTerms}
-                            className="text-amethyst hover:text-wisteria hover:cursor-pointer"
+                            className="text-wisteria hover:text-violet-dark hover:cursor-pointer transition-all duration-300"
                         >
                             términos y condiciones
-                        </a>.
+                        </span>
                     </label>
+                    <svg
+                        className="
+                            absolute w-5 h-5
+                            hidden peer-checked:block
+                            pointer-events-none text-main-light"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                 </div>
-                <button 
-                    type="submit" 
-                    className="col-span-2 text-white text-base sm:text-xl bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
+                <button
+                    type="submit"
+                    className="relative flex justify-center items-center col-span-2 text-white text-base sm:text-xl bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark disabled:bg-amethyst/50"
+                    disabled={isLoading}
                 >
+                    {isLoading &&
+                        <LoadingIcon className="absolute -translate-x-20"></LoadingIcon>
+                    }
                     Registrarse
                 </button>
-                {error && <p className="col-span-2 text-red-500 text-sm text-center">{error}</p>}            
-                <span className="col-span-2 my-2 text-center text-xl text-white lg:text-2xl">¿Ya tienes una cuenta?</span>
-                <button 
-                    type="button" 
-                    onClick={handleToggle} 
-                    className="col-span-2 text-white text-base sm:text-xl bg-grape w-full rounded-md p-2 transition-all duration-500 hover:bg-violet-dark"
-                >
-                    Iniciar Sesión
-                </button>
             </form>
+            <p className='text-center text-white w-full mt-8'>
+                ¿Ya tienes una cuenta?&nbsp;
+                <span
+                    onClick={handleToggle}
+                    className="w-full rounded-md transition-all hover:cursor-pointer relative ease-in-out text-wisteria
+                        before:transition-[width] before:ease-in-out before:duration-300 before:absolute before:bg-wisteria before:origin-center before:h-[2px] before:w-0 hover:before:w-[50%] before:-bottom-1 before:left-[50%]
+                        after:transition-[width] after:ease-in-out after:duration-300 after:absolute after:bg-wisteria after:origin-center after:h-[2px] after:w-0 hover:after:w-[50%] after:-bottom-1 after:right-[50%]"
+                >
+                    Inicia sesión
+                </span>
+            </p>
         </div>
     )
 }

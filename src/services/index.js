@@ -9,3 +9,5 @@ export { default as getForumByIdService } from './getForumById';
 export { default as getForumsService } from './getForums';
 export { default as getAlumnsService } from './getAlumns';
 export { default as getGradesService } from './getGrade';
+export { default as getSummaryForumsService } from './getSummaryForums';
+export { default as createCommentService } from './createComment';
