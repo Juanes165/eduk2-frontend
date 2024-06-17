@@ -16,7 +16,7 @@ export default function ComentCard({ coment, ownComent, handleDelete }) {
             )}
             <div className="flex gap-3 items-center">
                 <div>
-                    <img src={coment.imageProfile} className="w-8 h-8 rounded-full"/>
+                    <img onError={(e) => e.target.src = '/images/avatar.svg'} src={coment.imageProfile} className="w-8 h-8 rounded-full bg-gray-500"/>
                 </div>
                 <div>
                     <h2 className="font-semibold">{coment.userName}</h2>

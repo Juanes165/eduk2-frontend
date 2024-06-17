@@ -64,7 +64,7 @@ export default function StudentView({ params }) {
             <section className="bg-white rounded-3xl p-5 mt-5 shadow-gray-400 shadow-md dark:shadow-none">
                 <div className="flex items-center gap-4">
                     <div>
-                        <img src={discution?.photoUrl} className="rounded-full bg-red-500 w-12 h-12" />
+                        <img onError={(e) => e.target.src = '/images/avatar.svg'} src={discution?.photoUrl} className="rounded-full bg-gray-500 w-12 h-12" />
                     </div>
                     <div>
                         <h2 className="font-semibold text-2xl">
