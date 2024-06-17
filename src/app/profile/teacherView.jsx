@@ -17,9 +17,8 @@ import TableListStudents from "@/components/Tables/TableListStudents";
 export default function teacherView() {
 
     const { user } = useAuth();
-    console.log(user);
-    const [showModalClose, setShowModalClose] = useState(false)
 
+    const [showModalClose, setShowModalClose] = useState(false)
 
     const [role, setRole] = useState(null);
 
@@ -36,9 +35,6 @@ export default function teacherView() {
     const handleToggleClose = () => {
         setShowModalClose(!showModalClose);
     }
-
-
-
 
     return (
         <>

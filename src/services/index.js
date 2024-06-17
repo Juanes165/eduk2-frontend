@@ -11,3 +11,4 @@ export { default as getAlumnsService } from './getAlumns';
 export { default as getGradesService } from './getGrade';
 export { default as getSummaryForumsService } from './getSummaryForums';
 export { default as createCommentService } from './createComment';
+export { default as addPointsService } from './addPoints';
