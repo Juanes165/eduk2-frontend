@@ -55,13 +55,6 @@ export default function TeacherView() {
                     </div>
                 </Link>
             </div>
-            <div className="h-full hidden md:block md:w-[30%] p-10 fixed right-0 top-11">
-                <ForumContainer>
-                    {discutions.map((forum, index) => (
-                        <ForumCard key={index} forum={forum}/>
-                    ))}
-                </ForumContainer>
-            </div>
         </main>
     )
 }

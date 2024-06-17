@@ -31,8 +31,6 @@ export default function Header({ toggleSidebar }) {
                 </div>
             </div>
             <nav className="mr-10 flex flex-row items-center w-fit">
-                <span className="mr-3 text-xl hidden md:inline-block">Inicio</span>
-                <span className="mr-3 text-xl hidden md:inline-block">Foro</span>
                 <DarkModeToggle handleDarkMode={handleDarkMode} />
                 <button type="button" className="flex flex-row items-center" onClick={signOut}>
                     <span className="mr-3 text-xl hidden md:inline-block">Salir</span>
