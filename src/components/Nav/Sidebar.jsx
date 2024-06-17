@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import BadgesEduk2Container from '../Badges/BadgesEduk2Container';
+import BadgesContainer from '../Badges/BadgesContainer';
+import { NewUser, FirstCourse } from '@/utils/icons/badges'; 
 import getLevel from '@/utils/getLevel';
 
 export default function Sidebar({ openedSidebar, sidebarRef }) {
@@ -43,8 +45,12 @@ export default function Sidebar({ openedSidebar, sidebarRef }) {
                 {/* Achievements */}
                 <div className={`flex ${openedSidebar ? "px-4" : "px-0 group-hover:delay-200"} gap-2 flex-wrap group-hover:px-4 justify-between mb-4 transition-all duration-200`}>
                     <BadgesEduk2Container level={userLevel} className="w-12 h-12" />
-                    <div className={`bg-amber-300 rounded-full h-12 w-12`} />
-                    <div className={`bg-amber-300 rounded-full h-12 w-12`} />
+                    <BadgesContainer obtained={true} className="w-12 h-12">
+                        <NewUser className="w-6 h-6" />
+                    </BadgesContainer>
+                    <BadgesContainer className="w-12 h-12" obtained={true} >
+                        <FirstCourse className="w-6 h-6" />
+                    </BadgesContainer>
                 </div>
             </div>
 
