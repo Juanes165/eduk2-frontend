@@ -5,7 +5,11 @@ import TeacherView from "./teacherView";
 import { redirect } from "next/navigation";
 
 export default function CourseDetailsPage({ params }){
-    const { user } = useAuth();
+    const { user, isLogged } = useAuth();
+
+    if(!isLogged){
+        return redirect('/access');
+    }
 
     if(Object.keys(user).length === 0 && user.constructor === Object){
         return <h1>Loading...</h1>

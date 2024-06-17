@@ -9,6 +9,10 @@ import Image from "next/image";
 import { Header } from "@/components/Nav";
 import AchievementList from "@/components/Achievement/AchievementList";
 import { Trophy, DeleteIcon } from "@/utils/icons/icons";
+import BadgesContainer from "@/components/Badges/BadgesContainer";
+import BadgesEduk2Container from "@/components/Badges/BadgesEduk2Container";
+import { NewUser, FirstCourse } from "@/utils/icons/badges";
+import getLevel from "@/utils/getLevel";
 
 export default function StudentView() {
 
@@ -32,9 +36,6 @@ export default function StudentView() {
     const handleToggleClose = () => {
         setShowModalClose(!showModalClose);
     }
-
-
-
 
     return (
         <>
@@ -88,12 +89,36 @@ export default function StudentView() {
                     
                     <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-white shadow-md shadow-violet-dark dark:bg-main-dark dark:border-gray-700 border-t-1 border-b-1 border-r-1 lg:border-l-2 xl:border-l-2 border-gray-200 md:rounded-r-lg rounded-b-lg sm:rounded-b-none">
                         {/* logros*/}
-                        <div className="flex flex-wrap items-center justify-center mb-4 mt-4">
+                        <div className="flex flex-wrap items-center justify-center mb-4 mt-4 -translate-y-20">
                             <p className={`${pressStart2P.className} text-3xl`}>Logros</p>
                             <Trophy className="size-10 ml-5" />
                         </div>
-                        <div>
-                            <AchievementList badges={user.badges} />
+                        <div className="flex flex-col gap-4 scale-150">
+                            <div className="flex flex-row justify-center items-center gap-3">
+                                <BadgesContainer obtained={true} className="w-12 h-12 row-span-2" >
+                                    <NewUser className="w-6 h-6" />
+                                </BadgesContainer>
+                                <div className="flex flex-col">
+                                    <span className="col-span-1 row-span-1 text-md font-semibold">Bienvenido</span>
+                                    <span className="col-span-1 row-span-1 text-md">Crea una cuenta en EDUK2</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-row justify-center items-center gap-3">
+                                <BadgesContainer obtained={true} className="w-12 h-12 row-span-2" >
+                                    <FirstCourse className="w-6 h-6" />
+                                </BadgesContainer>
+                                <div className="flex flex-col">
+                                    <span className="col-span-1 row-span-1 text-md font-semibold">Aprendiz</span>
+                                    <span className="col-span-1 row-span-1 text-md">Visita tu primer curso</span>
+                                </div>
+                            </div>
+                            <div className="flex flex-row justify-center items-center gap-3">
+                            <BadgesEduk2Container level={getLevel(user.points)} className="w-12 h-12" />
+                                <div className="flex flex-col">
+                                    <span className="col-span-1 row-span-1 text-md font-semibold">{levels[getLevel(user.points)]}</span>
+                                    <span className="col-span-1 row-span-1 text-md">Tus puntos: {user.points}</span>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -103,6 +128,13 @@ export default function StudentView() {
                         <DeleteAccount closeModal={handleToggleClose} />
                     </div>
                 }
-            </div></>
+            </div>
+    </>
     );
+}
+
+const levels = {
+    1: "Bronce",
+    2: "Plata",
+    3: "Oro",
 }
