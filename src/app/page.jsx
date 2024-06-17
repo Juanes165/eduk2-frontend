@@ -3,8 +3,14 @@
 import LandingInfoCard from "@/components/Cards/LandingInfoCard";
 import Link from "next/link";
 import { pressStart2P } from "@/utils/fonts/fonts";
+import DarkModeToggle from "@/components/Buttons/DarkModeToggle";
 
 export default function Home() {
+
+  const handleDarkMode = () => {
+    document.documentElement.classList.toggle('dark')
+  }
+
   return (
     <>
       {/* Header with logo and login button */}
@@ -15,15 +21,19 @@ export default function Home() {
           <img src="logoDark.png" className="hidden dark:block rounded-full w-12 h-12" />
           <h1 className={`${pressStart2P.className} text-3xl font-bold`}>EDUK2</h1>
         </div>
-        <Link href="/access" className="hidden sm:block bg-transparent border-2 border-amethyst dark:border-grape text-2xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white px-8 py-1" >
-          Ingresar
-        </Link>
+        <div className="flex gap-2">
+          <DarkModeToggle handleDarkMode={handleDarkMode} />
+          <Link href="/access" className="hidden sm:block bg-transparent border-2 border-amethyst dark:border-grape text-2xl font-bold rounded-full hover:bg-amethyst dark:hover:bg-grape hover:text-white px-8 py-1" >
+            Ingresar
+          </Link>
+        </div>
       </header>
 
       {/* Main content */}
       <main className="container mx-auto gap-4 min-h-screen w-full items-center mt-2 lg:px-14 xl:px-24 2xl:px-20">
         <section className="flex flex-col top-0 mb-16 md:flex-row">
-          <img src="https://via.placeholder.com/400" className="px-6 py-8 2xl:h-[550px] 2xl:w-[550px]" />
+          <img src="logoLight.png" className="px-6 py-8 block dark:hidden" />
+          <img src="logoDark.png" className="px-6 py-8 hidden dark:block" />
           <div className="w-full flex items-center justify-center text-center flex-col">
             <h2 className="text-4xl font-bold pt-4 mb-4">¿Qué es EDUK2?</h2>
             <p className="text-xl px-8 sm:px-4 py-2 sm:text-balance mb-6">
