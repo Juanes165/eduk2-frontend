@@ -131,10 +131,11 @@ const TableListStudents = () => {
             id="countries"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={handleFilterByClass}
+            value={grades}
           >
             <option selected>Clase</option>
-            {grades.map((clase) => (
-              <option key={clase} value={clase}>{clase}</option>
+            {grades.map((clase, index) => (
+              <option key={index} value={clase}>{clase}</option>
             ))}
           </select>
         </div>
@@ -147,12 +148,12 @@ const TableListStudents = () => {
               <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Clase</TableHead>
               <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Email</TableHead>
               <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2">Puntos</TableHead>
-              <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2 text-right">Actiones</TableHead>
+              <TableHead className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 px-4 py-2 text-right">Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {paginatedStudents.map(student => (
-              <TableRow key={student.id}>
+              <TableRow key={student.email}>
                 <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.name}</TableCell>
                 <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.grade}</TableCell>
                 <TableCell className="border-b dark:border-gray-700 px-4 py-2">{student.email}</TableCell>
@@ -197,7 +198,7 @@ const TableListStudents = () => {
           <DialogContent className="sm:max-w-[425px] bg-white border-gray-300 rounded-md shadow-md dark:border-gray-800">
             <DialogHeader>
               <DialogTitle className="text-lg font-bold">Editar</DialogTitle>
-              <DialogDescription>Actualiza la informacion</DialogDescription>
+              <DialogDescription>Actualiza la información</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid items-center grid-cols-4 gap-4">
@@ -212,7 +213,7 @@ const TableListStudents = () => {
               <div className="grid items-center grid-cols-4 gap-4">
                 <label className="text-right font-medium text-gray-700 dark:text-gray-300" htmlFor="status">Puntos</label>
                 <input
-                  className="col-span-3 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800"
+                  className="col-span-3 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-amethyst focus:border-amethyst dark:border-gray-800"
                   id="status"
                   placeholder={selectedStudent.points}
                   onChange={handleInputChange}
@@ -221,7 +222,7 @@ const TableListStudents = () => {
             </div>
             <DialogFooter>
               <button className="mr-2 bg-white dark:bg-gray-800 border border-gray-300 rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-800" variant="outline" onClick={handleCloseDialog}>Cancel</button>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="submit" onClick={handleSave}>Save</button>
+              <button className="bg-amethyst hover:bg-grape text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="submit" onClick={handleSave}>Save</button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
